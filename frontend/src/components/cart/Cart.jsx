@@ -16,11 +16,14 @@ function Cart() {
 
 
     const removeitem = (id) => {
-        axios.delete(`http://localhost:3000/addToCart/${id}`).then((res) => {
-            console.log(res.data);
-        }).catch(() => { })
+        axios.delete(`http://localhost:1234/routes/deleteproduct/${id}`).then((res) => {
+            // console.log(res.data);
+            cartData()
+        }).catch((err) => {
+            console.log(err)
+        })
 
-        cartData()
+
     }
 
 
@@ -32,19 +35,19 @@ function Cart() {
 
                 {
                     prod.length > 0 ? (
-                        prod.map((ele) => {
+                        prod.map((ele, ind) => {
                             // console.log(ele);
                             return <div className="row shadow my-4 d-flex justify-content-evenly align-items-center      p-2">
-                                <div className="col-2"><img src={ele.image} height={85} width={75}></img></div>
+                                <div className="col-2" key={ind}><img src={ele.image} height={85} width={75}></img></div>
                                 <div className="col-7">{ele.title}</div>
                                 <div className="col-2"><i class="bi bi-currency-rupee"></i>{ele.price}</div>
                                 <div className="col-1"><button className="btn btn-sm btn-danger" onClick={() => {
-                                    removeitem(ele.id)
+                                    removeitem(ele._id)
                                 }}>Remove</button></div>
                             </div>
 
                         })
-                    ) : (<h1 className="text-danger fw-bold my-5 text-center">cart is empty</h1>)
+                    ) : (<h1 className="text-danger fw-bold my-5 text-center">cart is Empty</h1>)
                 }
             </div>
         </div>

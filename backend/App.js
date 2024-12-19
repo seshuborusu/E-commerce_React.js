@@ -22,6 +22,8 @@ app.use("/routes",cartrouter)
 
 app.use("/routes",cartrouter)
 
+app.use("/routes",cartrouter)
+
 app.post("/addproduct", async (req, res) => {
     const data = req.body
     const response = await productmodel.create(data)
