@@ -1,0 +1,26 @@
+.link-font:hover {
+    color: rgb(253, 40, 76);
+}
+
+.link-font {
+    color: black;
+}
+
+.bar {
+    width: 100%;
+
+}
+
+/* .signup-button {
+    background-color: rgb(250, 50, 117);
+    color: white;
+    font-weight: 600;
+} */
+
+.seach-container {
+    width: 400px;
+}
+
+@media screen and (min-width:257px) {
+   
+}

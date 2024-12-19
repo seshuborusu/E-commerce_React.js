@@ -1,0 +1,21 @@
+@media (min-width:0px) and (max-width:576px){
+    .img{
+        height: 110px!important;
+      /* color: red; */
+}
+.card_title{
+    font-size: 10px;
+    /* height: 70px; */
+}
+.card_text{
+    font-size: 11px;
+}
+.button{
+    padding: 5px;
+    height: 25px;
+    font-size: 10px!important;
+
+}
+
+}
+

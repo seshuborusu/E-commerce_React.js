@@ -1,0 +1,10 @@
+
+.butn{
+    background-color: rgb(250, 64, 95);
+    color: white;
+    font-weight: 600;
+}
+.butn:hover{
+    background-color: rgb(250, 64, 95);
+    color: white;    
+}

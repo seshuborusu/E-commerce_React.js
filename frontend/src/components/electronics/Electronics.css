@@ -1,0 +1,32 @@
+
+.bgimage{
+    height: 250px;
+    width: auto;
+    /* border: 1px solid black; */
+    border-radius: 7px;
+    animation: bgchange 8s step-start 1s infinite;
+    background-repeat: no-repeat;
+    background-size:cover;
+    
+    
+}
+@keyframes bgchange{
+    0%{
+        background-image: url("https://rukminim1.flixcart.com/fk-p-flap/1620/270/image/fac0652bee3b3e64.jpg?q=20");
+    }
+    50%{
+        background-image: url("https://rukminim1.flixcart.com/fk-p-flap/1620/270/image/96394e0900c8983c.jpg?q=20");
+    }
+    100%{
+        background-image: url("https://rukminim1.flixcart.com/fk-p-flap/1620/270/image/fac0652bee3b3e64.jpg?q=20");
+    }
+}
+.card_title{
+    display: block; /* Set display to block */
+  overflow: hidden; /* Hide overflow text */
+  text-overflow: ellipsis; /* Show ellipsis for overflow text */
+  line-clamp: 2; /* Limit to 2 lines */
+  -webkit-line-clamp: 2; /* Fallback for WebKit browsers */
+  -webkit-box-orient: vertical; /* Fallback for WebKit browsers */
+  display: -webkit-box; /* Fallback for WebKit browsers */
+}
