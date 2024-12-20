@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { ToastContainer,toast,Bounce } from 'react-toastify';
 
 function ProductDetails() {
     let { id } = useParams();
@@ -9,6 +10,7 @@ function ProductDetails() {
         image: "",
         thumbnails: [],
         title: "",
+        quantity:10,
         price: 0,
         description: "",
         rating: {
@@ -21,7 +23,36 @@ function ProductDetails() {
 
     const addCart = () => {
         axios.post("http://localhost:1234/routes/cart", product)
-            .then((res) => { alert("Added to cart"); })
+            .then((res) => {
+
+                if(res.data.result==="Product Added to cart"){
+                toast.success('Added to Cart', {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    transition: Bounce,
+                    });
+                    // console.log(res.data);
+                }else{
+                    toast.success('Updated the Cart', {
+                        position: "top-right",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: false,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                        transition: Bounce,
+                        });
+                }
+
+             })
             .catch((err) => { console.log(err); });
     };
 
@@ -42,8 +73,15 @@ function ProductDetails() {
         setMainImage(src);
     };
 
+
+    const getdata=(e)=>{
+        setProduct({...product,quantity:e.target.value})
+    }
+// console.log(product);
     return (
+
         <div className="container my-2" >
+            <ToastContainer/>
             <div className="row m-2 p-1 py-3">
                 <div className="col-12 col-lg-4 ">
                     <img src={mainImage} alt="" height={400} width={"100%"} className="border p-1"/>
@@ -90,6 +128,11 @@ function ProductDetails() {
                     <div className="mt-3">
                         <p className="my-2 fs-5 fw-normal " >Description</p>
                         <p>{product.description}</p>
+                    </div>
+
+                    <div>
+                        qty
+                        <input type="text" placeholder="qty" onChange={getdata}/>
                     </div>
                     <div className="d-flex mt-5 ">
                     <button className="btn btn-success w-50 me-4 p-1" onClick={addCart}>Add to cart</button>

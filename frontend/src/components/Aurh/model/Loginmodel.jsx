@@ -51,7 +51,7 @@ export default function Loginmodal() {
     const logoutUser = () => {
         localStorage.removeItem("token")
         setToken("")
-        toast.error('Logout Succesfully', {
+        toast('Logout Succesfully', {
             position: "top-right",
             autoClose: 3000,
             hideProgressBar: false,

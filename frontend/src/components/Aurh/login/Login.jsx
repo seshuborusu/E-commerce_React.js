@@ -22,7 +22,7 @@ function Login({ onswitch, onclose }) {
         axios.post("http://localhost:1234/routes/getuser", user).then((res) => {
             console.log(res.data);
             if (res.data.ok) {
-                localStorage.setItem("token",res.data.token)
+                localStorage.setItem("token",res.data.result)
                 onclose() //for closing
                 navigate("/")
             }else{

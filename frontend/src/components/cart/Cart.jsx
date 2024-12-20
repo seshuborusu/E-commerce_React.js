@@ -5,12 +5,21 @@ function Cart() {
     let [prod, setProd] = useState([])
     useEffect(() => {
         cartData()
+        console.log(prod);
     }, [])
 
     const cartData = () => {
-        axios.get("http://localhost:1234/routes/getcartdata").then((res) => {
+        axios.get("http://localhost:1234/routes/getcartdata",{
+            headers:{
+                Authorization:`Bearer ${localStorage.getItem("token")}`
+            },
+        }).then((res) => {
+
             setProd(res.data.result)
-        }).catch(() => { console.log("err"); })
+            console.log(res.data);
+        }).catch((err) => { console.log("err"); 
+            console.log(err);
+        })
     }
 
 
@@ -32,7 +41,7 @@ function Cart() {
         <div className="container">
             <div className="row">
 
-                {
+                {/* {
                     prod.length > 0 ? (
                         prod.map((ele, ind) => {
                             // console.log(ele);
@@ -47,7 +56,7 @@ function Cart() {
 
                         })
                     ) : (<h1 className="text-danger fw-bold my-5 text-center">Cart is Empty</h1>)
-                }
+                } */}
             </div>
         </div>
     )

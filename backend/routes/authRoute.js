@@ -31,8 +31,12 @@ userroute.post("/getuser", async (req, res) => {
     if (data == null) {
         res.json({ ok: false, message: "user not Found" })
     } else {
-        const token = jwt.sign({ data }, "jjjjjjjjjjjjj")
-        res.json({ ok: true, message: "user Valid", token: token })
+       payload={
+        number:data.mobile,
+        userid:data._id
+       }
+        const key = jwt.sign(payload , "jjjjjjjjjjjjj")
+        res.json({ ok: true, message: "user Valid", result: key })
     }
 })
 
