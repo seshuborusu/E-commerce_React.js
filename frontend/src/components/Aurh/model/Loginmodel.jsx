@@ -4,10 +4,10 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
 import Login from '../login/Login';
 import Signup from '../signup/Signup';
+import { ToastContainer,toast,Bounce } from 'react-toastify';
+import { useEffect, useState } from 'react';
 
 const style = {
     position: 'absolute',
@@ -23,22 +23,55 @@ const style = {
 
 export default function Loginmodal() {
     const [open, setOpen] = React.useState(false);
-    const [logged,setLogged]=React.useState(false)
+    const [logged, setLogged] = React.useState(false)
+    const [token, setToken] = useState("")
+
+    useEffect(() => {
+        const storedtoken = localStorage.getItem("token")
+        if (storedtoken) {
+            setToken(storedtoken)
+        }
+    }, [open])
+
 
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    const switchSignup=()=>{
+    const switchSignup = () => {
         setLogged(false)
     }
 
-    const SwitchLogin=()=>{
+    const SwitchLogin = () => {
         setLogged(true)
+
+    }
+
+
+
+    const logoutUser = () => {
+        localStorage.removeItem("token")
+        setToken("")
+        toast.error('Logout Succesfully', {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Bounce,
+            });
+
     }
 
     return (
         <div>
-            <Button onClick={handleOpen} variant="contained" size='medium'>Sign Up</Button>
+            <ToastContainer />
+            {token ? (<Button variant="contained" size='medium' onClick={logoutUser}>Logout</Button>) : (<Button onClick={handleOpen} variant="contained" size='medium'>Sign Up</Button>)}
+
+
+
             <Modal
                 aria-labelledby="transition-modal-title"
                 aria-describedby="transition-modal-description"
@@ -54,10 +87,10 @@ export default function Loginmodal() {
             >
                 <Fade in={open}>
                     <Box sx={style}>
-                      {
-                        logged?(<Login onswitch={switchSignup}/>):(<Signup onswitch={SwitchLogin}/>)
-                      }
-                    
+                        {
+                            logged ? (<Login onswitch={switchSignup} onclose={handleClose} />) : (<Signup onswitch={SwitchLogin} />)
+                        }
+
                     </Box>
                 </Fade>
             </Modal>

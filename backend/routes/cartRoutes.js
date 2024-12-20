@@ -20,7 +20,7 @@ cartrouter.get("/getcartdata", async (req, res) => {
 })
 
 
-cartrouter.delete("/deleteproduct/:id", async (req, res) => {
+cartrouter.delete("/deletecartproduct/:id", async (req, res) => {
    const id = req.params.id
    const d = await cartmodel.deleteOne({ _id: id })
    res.json({ok:true,result:"deleted Succesfully"})

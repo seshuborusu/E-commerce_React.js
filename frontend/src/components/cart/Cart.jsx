@@ -16,7 +16,7 @@ function Cart() {
 
 
     const removeitem = (id) => {
-        axios.delete(`http://localhost:1234/routes/deleteproduct/${id}`).then((res) => {
+        axios.delete(`http://localhost:1234/routes/deletecartproduct/${id}`).then((res) => {
             // console.log(res.data);
             cartData()
         }).catch((err) => {
@@ -31,7 +31,6 @@ function Cart() {
     return (
         <div className="container">
             <div className="row">
-                <h1>cart component</h1>
 
                 {
                     prod.length > 0 ? (
@@ -47,7 +46,7 @@ function Cart() {
                             </div>
 
                         })
-                    ) : (<h1 className="text-danger fw-bold my-5 text-center">cart is Empty</h1>)
+                    ) : (<h1 className="text-danger fw-bold my-5 text-center">Cart is Empty</h1>)
                 }
             </div>
         </div>

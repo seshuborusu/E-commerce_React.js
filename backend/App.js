@@ -3,6 +3,7 @@ const cors = require("cors")
 const mongoose = require("mongoose")
 const productmodel = require("../backend/model/connection")
 const cartrouter=require("../backend/routes/cartRoutes")
+const userroute = require("./routes/authRoute")
 
 
 
@@ -13,16 +14,24 @@ app.use(express.json())
 
 async function connectDb() {
     await mongoose.connect("mongodb://localhost:27017/productsdb")
+    
 
 
 }
+
 connectDb()
 
-app.use("/routes",cartrouter)
+
+app.use("/routes",cartrouter) //
 
 app.use("/routes",cartrouter)
 
 app.use("/routes",cartrouter)
+
+app.use("/routes",userroute) //post users signup
+
+app.use("/routes",userroute) //get for login http://localhost:1234/routes/getuser
+
 
 app.post("/addproduct", async (req, res) => {
     const data = req.body
