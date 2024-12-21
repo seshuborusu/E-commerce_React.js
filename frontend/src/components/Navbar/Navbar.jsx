@@ -5,8 +5,14 @@ import Navbar from 'react-bootstrap/Navbar';
 import Loginmodel from '../Aurh/model/Loginmodel';
 import "./Navbar.css"
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 function NavScrollExample() {
+    let [logged,setLogged]=useState(localStorage.getItem("token"))
+
+    useEffect(()=>{
+        setLogged(localStorage.getItem("token"))
+    },[])
     return (
         <Navbar expand="lg" className="bg-body-transparent border-bottom p-2 navbaras " style={{ fontFamily: "sans-serif", color: "black" }}>
             <Container >
@@ -44,7 +50,7 @@ function NavScrollExample() {
                             <div style={{ width: "140px" }}><Loginmodel/></div>
 
                         </div>
-                        <div><Link to={"/cart"}><i class="bi bi-bag-check fs-4 bag text-dark"></i></Link></div>
+                        {   <div><Link to={"/cart"}><i class="bi bi-bag-check fs-4 bag text-dark"></i></Link></div>}
                     </div>
                 </Navbar.Collapse>
             </Container>

@@ -8,6 +8,7 @@ import Login from '../login/Login';
 import Signup from '../signup/Signup';
 import { ToastContainer,toast,Bounce } from 'react-toastify';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const style = {
     position: 'absolute',
@@ -25,6 +26,7 @@ export default function Loginmodal() {
     const [open, setOpen] = React.useState(false);
     const [logged, setLogged] = React.useState(false)
     const [token, setToken] = useState("")
+    const navigate=useNavigate()
 
     useEffect(() => {
         const storedtoken = localStorage.getItem("token")
@@ -51,7 +53,8 @@ export default function Loginmodal() {
     const logoutUser = () => {
         localStorage.removeItem("token")
         setToken("")
-        toast('Logout Succesfully', {
+        navigate("/")
+        toast.success('Logout Succesfully', {
             position: "top-right",
             autoClose: 3000,
             hideProgressBar: false,

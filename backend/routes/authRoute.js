@@ -1,6 +1,7 @@
 const express = require("express")
 const usermodel = require("../model/Auth")
 const jwt = require("jsonwebtoken")
+const secret_Key="asbncjhbcnvhj"
 
 
 const userroute = express.Router()
@@ -35,7 +36,7 @@ userroute.post("/getuser", async (req, res) => {
         number:data.mobile,
         userid:data._id
        }
-        const key = jwt.sign(payload , "jjjjjjjjjjjjj")
+        const key = jwt.sign(payload , secret_Key)
         res.json({ ok: true, message: "user Valid", result: key })
     }
 })

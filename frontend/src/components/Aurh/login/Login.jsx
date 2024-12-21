@@ -23,6 +23,7 @@ function Login({ onswitch, onclose }) {
             console.log(res.data);
             if (res.data.ok) {
                 localStorage.setItem("token",res.data.result)
+                
                 onclose() //for closing
                 navigate("/")
             }else{

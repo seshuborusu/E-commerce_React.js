@@ -2,16 +2,15 @@
 const mongoose=require("mongoose")
 
 const cartschema=new mongoose.Schema({
-    _id:String,
+    _id:{String ,required:true},
     title:String,
     price:String,
-    
     image:String,
     description:String,
     category:String,
     rating:{rate:Number,count:Number},
    thumbnails:[{name:String,url:String}],
-   quantity:{ type: String, required: true, },
+   quantity:{ type: String, required: true,default:1 },
 
 
 
@@ -20,3 +19,4 @@ const cartschema=new mongoose.Schema({
 const cartmodel=mongoose.model("cart",cartschema)
 
 module.exports=cartmodel
+module.exports=cartschema
