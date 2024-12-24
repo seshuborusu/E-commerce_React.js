@@ -1,0 +1,25 @@
+.emptycart_container{
+    font-family: "Manrope", serif;
+}
+.shopping_custom_btn {
+    background-color: white; /* Your custom color */
+    color: rgb(252, 21, 60); /* Text color */
+    border: 1px solid rgb(252, 21, 60); /* Remove border */
+    font-weight: 600;
+}
+
+.shopping_custom_btn:hover {
+    background-color:rgb(248, 39, 74) /* Darker shade for hover effect */
+}
+
+@media (min-width:0px) and (max-width:380px){
+    .shopping_custom_btn{
+        font-size: 13px;
+    }
+    .emptycart_container h4{
+        font-size: 16px;
+    }
+    .emptycart_container p{
+        font-size: 13px!important;
+    }
+}

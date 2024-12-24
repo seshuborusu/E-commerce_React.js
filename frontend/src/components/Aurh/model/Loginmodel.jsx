@@ -70,10 +70,10 @@ export default function Loginmodal() {
 
     return (
         <div>
-            <ToastContainer />
+           
             {token ? (<Button variant="contained" size='medium' onClick={logoutUser}>Logout</Button>) : (<Button onClick={handleOpen} variant="contained" size='medium'>Sign Up</Button>)}
 
-
+            <ToastContainer />
 
             <Modal
                 aria-labelledby="transition-modal-title"

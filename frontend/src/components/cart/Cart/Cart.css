@@ -1,0 +1,17 @@
+.pricedetails_container{
+    width: 70%;
+    background-color: white;
+}
+.rupee{
+    font-size: 15px;
+
+}
+.insiderupee{
+    font-size: 14px;
+    margin-bottom: 3px;
+}
+@media screen and  (min-width:0px) and (max-width:575px){
+.pricedetails_container{
+    width: 100%;
+}
+}

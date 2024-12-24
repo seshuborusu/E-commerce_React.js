@@ -32,6 +32,7 @@ app.use("/routes",userroute) //post users signup
 
 app.use("/routes",userroute) //get for login http://localhost:1234/routes/getuser
 
+app.use("/routes",cartrouter)
 
 app.post("/addproduct", async (req, res) => {
     const data = req.body

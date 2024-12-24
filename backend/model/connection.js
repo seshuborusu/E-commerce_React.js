@@ -1,13 +1,9 @@
 const mongoose=require("mongoose")
 
-
-
-
-
 const productsschema=new mongoose.Schema({
     _id:String,
     title:String,
-    price:String,
+    price:Number,
     image:String,
     description:String,
     category:String,
@@ -17,10 +13,6 @@ const productsschema=new mongoose.Schema({
 
 
 })
-
-
-
-
 
 const productmodel=mongoose.model("product",productsschema)
 

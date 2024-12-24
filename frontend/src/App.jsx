@@ -13,7 +13,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import Profile from "./profile/Profile";
 import Personaldetails from "./components/userdetails/Personaldetails"
 import Professionaldetails from "./components/userdetails/Professionaldetails"
-import Cart from "./components/cart/Cart";
+import Cart from "./components/cart/Cart/Cart";
 import Contactdetails from "./components/userdetails/Contactdetails"
 import NavScrollExample from "../src/components/Navbar/Navbar"
 function App() {  

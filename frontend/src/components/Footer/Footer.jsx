@@ -1,8 +1,8 @@
 function Footer() {
     return (
-        <div className="container-fluid ">
+        <div className="container-fluid mt-4">
 
-            <div className="row  fw-normal bg-dark text-light p-4" style={{ fontSize: "13px" }}>
+            <div className="row  fw-normal bg-dark text-light p-4 " style={{ fontSize: "13px" }}>
                 <div className="col-3">
                     <p className="text-secondary  "> ABOUT</p>
                     <div style={{ fontSize: "15px" }}>
