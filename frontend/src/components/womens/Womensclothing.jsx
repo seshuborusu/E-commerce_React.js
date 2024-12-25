@@ -16,7 +16,7 @@ function Womensclothing() {
         document.title = "Womens wear"
     }
     return (
-        <div className="container-fluid mt-4 px-5 ">
+        <div className="container-fluid">
 
             {wpoducts.length > 0 && <div className="row my-4 row-gap-3 ">
                 {wpoducts.map((ele) => {

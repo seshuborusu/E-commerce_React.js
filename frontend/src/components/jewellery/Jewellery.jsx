@@ -16,7 +16,7 @@ function Jewellery() {
     
     return (
         <div>
-        <div className="container-fluid mt-4 px-5">
+        <div className="container-fluid">
             <div>
                 <h4 className="text-cente mt-5 fs-3">Trending Products</h4>
             </div>

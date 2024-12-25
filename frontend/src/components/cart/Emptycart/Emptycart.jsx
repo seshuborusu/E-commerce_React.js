@@ -14,7 +14,6 @@ function Emptycart() {
 
             <div></div>
         </div>
-        <Footer/>
         </div>
     )
 }

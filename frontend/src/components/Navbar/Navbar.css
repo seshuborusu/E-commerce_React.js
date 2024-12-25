@@ -5,11 +5,16 @@
 .link-font {
     color: black;
 }
-
+.link-font:hover,
+.link-font:active,
+.link-font:focus {
+    color: rgb(253, 40, 76); /* Pink color on hover, active, or focus */
+}
 .bar {
     width: 100%;
 
 }
+
 
 /* .signup-button {
     background-color: rgb(250, 50, 117);

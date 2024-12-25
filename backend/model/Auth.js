@@ -6,14 +6,7 @@ _id:String,
     title: String,
     price: Number,
     image: String,
-    description: String,
-    category: String,
-    rating: { rate: Number, count: Number },
-    thumbnails: [{ name: String, url: String }],
     quantity: { type: Number, required: true, default: 1 }
-
-
-
 })
 
 const userschema = mongoose.Schema({

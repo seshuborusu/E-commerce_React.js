@@ -8,13 +8,8 @@ import Pagenotfound from "./components/pagenotfound/Pagenotfound";
 import "./App.css";
 import Productdetails from "./components/productdetails/Productdetails";
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
-import Profile from "./profile/Profile";
-import Personaldetails from "./components/userdetails/Personaldetails"
-import Professionaldetails from "./components/userdetails/Professionaldetails"
+
 import Cart from "./components/cart/Cart/Cart";
-import Contactdetails from "./components/userdetails/Contactdetails"
 import NavScrollExample from "../src/components/Navbar/Navbar"
 function App() {  
     
@@ -35,12 +30,7 @@ function App() {
                 <Route path="/productdetails/:id" element={<Productdetails />} />
                 <Route path="/cart" element={<Cart />} />
 
-                <Route path="/profile" element={<Profile />}>
-                    <Route path="" element={<Navigate to="Personaldetails" />} />
-                    <Route path="personaldetails" element={<Personaldetails />} />
-                    <Route path="professionaldetails" element={<Professionaldetails />} />
-                    <Route path="contactdetails" element={<Contactdetails />} />
-                </Route>
+            
 
                         <Route path="*" element={<Pagenotfound />} />
 

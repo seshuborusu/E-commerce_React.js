@@ -34,6 +34,8 @@ app.use("/routes",userroute) //get for login http://localhost:1234/routes/getuse
 
 app.use("/routes",cartrouter)
 
+app.use("/routes",userroute)
+
 app.post("/addproduct", async (req, res) => {
     const data = req.body
     const response = await productmodel.create(data)

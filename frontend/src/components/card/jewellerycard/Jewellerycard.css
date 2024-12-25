@@ -1,21 +1,43 @@
-@media (min-width:0px) and (max-width:576px){
-    .img{
-        height: 110px!important;
-      /* color: red; */
+.card_title {
+    font-size: 14px;
+    font-weight: 400;
+    color: rgb(5, 5, 5);
 }
-.card_title{
-    font-size: 10px;
-    /* height: 70px; */
+
+.card_text {
+    font-size: 15px;
+    font-weight: 800;
 }
-.card_text{
+
+.rupee_icon {
+    font-size: 16px !important;
+    margin: 0px -3px 2px 1px;
+}
+
+.card_rating {
+    font-size: 12px;
+    padding: 1px 5px;
+    color: white;
+}
+
+.star {
+    margin: 0 0 4px 1px;
+}
+
+.rating-count {
     font-size: 11px;
-}
-.button{
-    padding: 5px;
-    height: 25px;
-    font-size: 10px!important;
+    margin-left: 5px;
 
 }
 
-}
 
+@media (min-width:0px) and (max-width:576px) {
+    .img {
+        height: 100px !important;
+
+    }
+
+    .card_title {
+        font-size: 13px;
+    }
+}

@@ -24,7 +24,7 @@ function NavScrollExample() {
                         className="me-auto my-2  my-lg-0 fw-semibold "
                         style={{ maxHeight: '100px' }}
                         navbarScroll >
-                        <Link to={"/electronics"} className='text-decoration-none'><Nav.Link href="#action2" className='link-font'>Electronics</Nav.Link></Link>
+                        <Link to={"/electronics"} className='text-decoration-none'><Nav.Link href="n2" className='link-font'>Electronics</Nav.Link></Link>
 
                         <Link to={"/jewellery"} className='text-decoration-none'>  <Nav.Link href="x" className=' link-font'>
                             Jewelery
@@ -32,7 +32,7 @@ function NavScrollExample() {
                         <Link to={"/mens"} className='text-decoration-none'> <Nav.Link href="f" className='link-font' >
                             Men
                         </Nav.Link></Link>
-                        <Link to={"/womens"} className='text-decoration-none'> <Nav.Link href="f" className='link-font' >
+                        <Link to={"/womens"} className='text-decoration-none'> <Nav.Link href="c" className='link-font' >
                             Womens
                         </Nav.Link></Link>
 

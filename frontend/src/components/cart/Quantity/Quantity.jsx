@@ -33,7 +33,8 @@ const QuantitySelector = ({ id, setprod, quan,setPriceDetails }) => {  // Ensure
                     setPriceDetails(res.data.priceDetails || {});
                 })
                 .catch((err) => {
-                    toast.error('Error updating quantity: ' + (err.response ? err.response.data.message : err.message));
+                    alert("error")
+                    // toast.error('Error updating quantity: ' + (err.response ? err.response.data.message : err.message));
                 });
         }
     }, [quantity, id, setprod]); // Run effect when `quantity` or `id` changes
@@ -43,7 +44,7 @@ const QuantitySelector = ({ id, setprod, quan,setPriceDetails }) => {  // Ensure
 
     return (
         <div>
-            <ToastContainer />
+           
             <label htmlFor="quantity">Qty:</label>
             <select
                 id="quantity"

@@ -3,6 +3,9 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { ToastContainer, toast, Bounce } from 'react-toastify';
 import Footer from "../Footer/Footer";
+import { FaStar } from "react-icons/fa";
+import "./Productdetails.css"
+import { CiHeart } from "react-icons/ci";
 
 function ProductDetails() {
     let { id } = useParams();
@@ -210,14 +213,21 @@ function ProductDetails() {
         setMainImage(src);
     };
 
+    const style = {
+        title: {
+            fontSize: "18px!important",
+            color: "black",
+            fontWeight: "600"
+        }
+    }
     // console.log(product);
     return (
         <div>
             <div className="container my-2" >
 
-                <div className="row m-2 p-1 py-3">
+                <div className="row  py-3">
                     {/* <ToastContainer /> */}
-                    <div className="col-12 col-lg-4 ">
+                    <div className="col-12 col-lg-5 col-md-5">
                         <img src={mainImage} alt="" height={400} width={"100%"} className="border p-1" />
 
 
@@ -245,32 +255,40 @@ function ProductDetails() {
                     </div>
 
 
-                    <div className="col-lg-8 col-12 ">
+                    <div className="col-lg-7 col-md-7 col-12 ">
                         <div>
                             {/* <p>Title</p> */}
-                            <p className="fs-4 fw-normal" style={{ color: "gray" }}>{product.title}</p>
+                            <p className="" style={style.title}>{product.title}</p>
+                        </div>
+
+                        <div className="d-flex my-2 align-items-center">
+
+                            <p className="bg-success d-inline rounded-4 product-rating">{product.rating.rate} <FaStar className=" rating-star" /> </p>
+                            <p className="product-reviews ">({product.rating.count} Reviews)</p>
+
                         </div>
                         <div>
 
-                            <p className="fs-4 text-danger fw-bold "><i class="bi bi-currency-rupee"></i>{formatPrice(product.price)}</p>
-                        </div>
-                        <div className="d-flex ">
-
-                            <p className="px-2 text-light fw-semibold bg-success d-inline rounded-1 ">{product.rating.rate} </p>
-                            <p className="ms-2 fw-semibold">{product.rating.count} Reviews</p>
+                            <p className="product-price p-0 m-0"><i class="bi bi-currency-rupee rupeesymbol "></i>{formatPrice(product.price)}</p>
+                            <p className="taxes">Inclusive of all taxes</p>
                         </div>
                         <div className="mt-3">
-                            <p className="my-2 fs-5 fw-normal " >Description</p>
-                            <p>{product.description}</p>
+                            <p className="product-description p-0 m-0" >Description</p>
+                            <p className="description-content">{product.description}</p>
+                        </div>
+                        <div className=""><p className="product-description m-0">Specifications</p>
+                        <p className="m-0">Brand: Shop</p>
+                        <p className="m-0">color: NA</p>
+                        <p>Country of Origin: India</p>
                         </div>
 
                         <div className="d-flex mt-5 ">
                             {buttonText ? (
-                                <button className="btn btn-success w-50 me-4 p-1" onClick={addCart}>Add to Cart</button>
+                                <button className=" w-50 cart-button me-3 p-2" onClick={addCart}>Add to Cart</button>
                             ) : (
-                                <button className="btn btn-success w-50 me-4 p-1" onClick={goToCart}>Go to Cart</button>
+                                <button className="  w-50 cart-button p-2 me-3" onClick={goToCart}>Go to Cart</button>
                             )}
-                            <button className="btn btn-danger w-50">Wishlist</button>
+                            <button className="wishlist-button  w-50 "><CiHeart className="fs-4 mb-1" /> Wishlist</button>
                         </div>
                     </div>
                 </div>

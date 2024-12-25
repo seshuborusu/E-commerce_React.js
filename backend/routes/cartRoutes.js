@@ -255,4 +255,78 @@ cartrouter.post("/updatequantity/:id", (req, res, next) => {
    })
 
 
+// POST endpoint to merge guest cart with user cart
+cartrouter.post("/cart/merge",(req, res, next) => {
+   const token = req.headers.authorization.slice(7)
+   jwt.verify(token, secret_Key, (error, decode) => {
+      if (error) {
+         res.json("Token not match")
+      } else {
+         req.user = decode
+         // console.log(decode);
+         next()
+      }
+   })
+}, async (req, res) => {
+   const userId = req.user.userid; // User ID from token
+   const guestCart = req.body.guestCart; // The guest cart sent from the frontend
+console.log(guestCart);
+   try {
+      const user = await usermodel.findById(userId);
+      console.log(userId,"hiii");
+      if (!user) {
+         return res.status(404).json({ message: "User not found" });
+      }
+
+      if (!user.cart) {
+         user.cart = [];
+     }
+      // Merge guest cart with user's cart
+      guestCart.forEach(guestItem => {
+         const existingItem = user.cart.find(item => item._id == guestItem._id);
+
+         if (existingItem) {
+            // If item already exists, update the quantity
+            existingItem.quantity += guestItem.quantity;
+         } else {
+            // If item does not exist, add it to the cart
+            user.cart.push(guestItem);
+         }
+      });
+
+      await user.save(); // Save the updated cart to the database
+      res.json({ message: "Cart merged successfully", cart: user.cart });
+   } catch (error) {
+      console.error("Error merging cart:", error);
+      res.status(500).json({ message: "Error merging cart" });
+   }
+});
+
+
+
+
+
+
+
+const mergeGuestCart = () => {
+   const guestCart = JSON.parse(localStorage.getItem("cart")) || [];
+   const token = localStorage.getItem("token");
+
+   if (guestCart.length > 0 && token) {
+      axios.post("http://localhost:1234/routes/cart/merge", { guestCart }, {
+         headers: { Authorization: `Bearer ${token}` }
+      })
+         .then(response => {
+            console.log("Cart merged successfully:", response.data);
+            localStorage.removeItem("cart"); // Remove guest cart from localStorage
+         })
+         .catch(error => {
+            console.error("Error merging cart:", error);
+         });
+   }
+};
+
+// Example: Call this function after user logs in
+
+
 module.exports = cartrouter

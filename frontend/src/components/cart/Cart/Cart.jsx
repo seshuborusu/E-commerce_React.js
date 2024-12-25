@@ -33,7 +33,8 @@ function Cart() {
             })
         } else {
             setLogged("")
-        }}, [])
+        }
+    }, [])
 
     const removeitem = (id) => {
         axios.delete(`http://localhost:1234/routes/deletecartproduct/${id}`, {
@@ -92,21 +93,19 @@ function Cart() {
                             )
                         }
                     </div>
+                    {prod.length > 0 &&
+                        <div className="container mt-5 border p-3" >
+                            <div><h6 className="fw-bold "> Price Details</h6>
+                                <div className="d-flex justify-content-between "> <p>Total MRP : </p><p className="rupee"><BiRupee className="insiderupee" />{formatPrice(priceDetails.bagTotal)}</p></div>
+                                <div className="d-flex justify-content-between "> <p>Savings on MRP:</p><p className="rupee"><BiRupee className="insiderupee" />{formatPrice(priceDetails.savings)}</p></div>
+                                <div className="d-flex justify-content-between "> <p>Sub Total :</p><p className="rupee"><BiRupee className="insiderupee" />{formatPrice(priceDetails.subtotal)}</p></div>
+                                <div className="d-flex justify-content-between border-bottom "> <p>Shipping & Other Charges :</p><p className="rupee"><BiRupee className="insiderupee" />{formatPrice(priceDetails.shippingCharges)}</p></div>
+                                <div className="d-flex justify-content-between fw-bold my-2"> <h6>Order Total:</h6><h6 className="rupee fw-bold"><BiRupee className="insiderupee" />{formatPrice(priceDetails.orderTotal)}</h6></div>
 
-
-                    
-                    <div className="container mt-5 border p-3" >
-                        <div><h6 className="fw-bold "> Price Details</h6>
-                        <div className="d-flex justify-content-between "> <p>Total MRP : </p><p className="rupee"><BiRupee className="insiderupee"/>{formatPrice(priceDetails.bagTotal)}</p></div>
-                        <div className="d-flex justify-content-between "> <p>Savings on MRP:</p><p className="rupee"><BiRupee className="insiderupee"/>{formatPrice(priceDetails.savings)}</p></div>
-                        <div className="d-flex justify-content-between "> <p>Sub Total :</p><p className="rupee"><BiRupee className="insiderupee"/>{formatPrice(priceDetails.subtotal)}</p></div>
-                        <div className="d-flex justify-content-between border-bottom "> <p>Shipping & Other Charges :</p><p className="rupee"><BiRupee className="insiderupee"/>{formatPrice(priceDetails.shippingCharges)}</p></div>
-                        <div className="d-flex justify-content-between fw-bold my-2"> <h6>Order Total:</h6><h6 className="rupee fw-bold"><BiRupee className="insiderupee"/>{formatPrice(priceDetails.orderTotal)}</h6></div>
+                            </div>
 
                         </div>
-                    </div>
-
-
+                    }
                 </div>) : (
                 <div className="container">
                     <div>
