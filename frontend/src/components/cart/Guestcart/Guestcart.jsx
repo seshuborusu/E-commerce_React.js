@@ -1,11 +1,50 @@
-function Guestcart({cart,setCart}){
+import { useState,useEffect } from "react";
+import { FaTrashAlt } from "react-icons/fa";
+import { ToastContainer,toast,Bounce } from "react-toastify";
 
-    const handleRemove = (productId) => {
+function Guestcart(){
 
-        const updatedCart = cart.filter(item => item._id !== productId);
-        setCart(updatedCart);
-        localStorage.setItem("cart", JSON.stringify(updatedCart)); // Update localStorage for guest users
+    const [cartItems, setCartItems] = useState([]);
+   
+    useEffect(() => {
+        // Load cart data from localStorage when the component mounts
+        const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
+        setCartItems(savedCart);
+    }, []);
+
+    const removeFromCart = (productId) => {
+        // Remove product from the cart
+        const updatedCart = cartItems.filter(item => item._id !== productId);
+        setCartItems(updatedCart);
+
+        // Save the updated cart back to localStorage
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
+        toast.success('Item removed from cart', {
+            position: "top-right",
+            autoClose: 3000,
+            theme: "light",
+            transition: Bounce,
+        });
     };
+
+    const updateQuantity = (productId, quantity) => {
+        // Update the quantity of a specific product
+        const updatedCart = cartItems.map(item => {
+            if (item._id === productId) {
+                return { ...item, quantity: quantity };
+            }
+            return item;
+        });
+        setCartItems(updatedCart);
+
+        // Save the updated cart back to localStorage
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
+    };
+
+    const goToCheckout = () => {
+        navigate("/checkout");
+    };
+
 
     const formatPrice = (price) => {
         if (typeof price === "number" && !isNaN(price)) {
@@ -14,28 +53,44 @@ function Guestcart({cart,setCart}){
         return "0"; // Return 0 if price is not a valid number
     };
 
-    return(
-        <div>
-             <div className="container my-5">
-                            <h3>Your Cart</h3>
-                            {cart.length === 0 ? (
-                                <p>Your cart is empty</p>
-                            ) : (
-                                cart.map(item => (
-                                    <div className="cart-item" key={item._id}>
-                                        <img src={item.image} alt={item.title} width="100" />
-                                        <p>{item.title}</p>
-                                        <p>₹{formatPrice(item.price)}</p>
-                                        <p>Quantity: {item.quantity}</p>
-                                        <button onClick={() => handleRemove(item._id)}>Remove</button>
-                                    </div>
-                                ))
-                            )}
-                            <div className="cart-footer">
-                                <button onClick={() => navigate("/checkout")} className="btn btn-success">Login for Details</button>
+    return (
+        <div className="cart-container">
+            <h2>Your Cart</h2>
+            <div className="cart-items">
+                {cartItems.length === 0 ? (
+                    <p>Your cart is empty.</p>
+                ) : (
+                    cartItems.map(item => (
+                        <div key={item._id} className="cart-item">
+                            <img src={item.image} alt={item.title} width="100" height="100" />
+                            <div>
+                                <p>{item.title}</p>
+                                <p>Price: ₹{item.price}</p>
+                                <p>Quantity: 
+                                    <input 
+                                        type="number" 
+                                        min="1" 
+                                        value={item.quantity}
+                                        onChange={(e) => updateQuantity(item._id, parseInt(e.target.value))}
+                                    />
+                                </p>
                             </div>
+                            <button onClick={() => removeFromCart(item._id)}>
+                                <FaTrashAlt /> Remove
+                            </button>
                         </div>
+                    ))
+                )}
+            </div>
+
+            {cartItems.length > 0 && (
+                <div className="cart-summary">
+                    <button onClick={goToCheckout}>Login for Details</button>
+                </div>
+            )}
+
+            <ToastContainer />
         </div>
-    )
+    );
 }
 export default Guestcart

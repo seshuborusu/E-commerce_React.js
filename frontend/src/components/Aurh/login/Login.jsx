@@ -25,6 +25,7 @@ function Login({ onswitch, onclose }) {
                 if (res.data.ok) {
                     // Successfully logged in, store token
                     localStorage.setItem("token", res.data.result);
+                    localStorage.setItem("logged",true)
     
                     // Close the login modal (or other UI element) if applicable
                     onclose();

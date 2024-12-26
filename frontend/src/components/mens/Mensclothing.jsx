@@ -20,8 +20,8 @@ document.title = "Mens Wear"
         <div className="container-fluid">
 
             {mpoducts.length>0 && <div className="row row-gap-3 py-4">
-                {mpoducts.map((ele)=>{
-                    return<Menscard products={ele}/>
+                {mpoducts.map((ele,ind)=>{
+                    return<Menscard products={ele} key={ind}/>
                 })
             }</div>}
 

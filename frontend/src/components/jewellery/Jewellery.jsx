@@ -1,4 +1,4 @@
-import jewelleryService from "../service/jewelleryService/jewelleryService"
+import jewelleryService from "../service/jewelleryService/jewelleryService";
 import Jewellerycard from "../card/jewellerycard/Jewellerycard"
 import { useState, useEffect } from "react"
 import Footer from "../Footer/Footer"
@@ -22,8 +22,8 @@ function Jewellery() {
             </div>
 
             {jpoducts.length > 0 && <div className="row my-5 row-gap-5">
-                {jpoducts.map((ele) => {
-                    return <Jewellerycard products={ele} />
+                {jpoducts.map((ele,ind) => {
+                    return <Jewellerycard products={ele} key={ind+1}/>
                 })
                 }</div>}
         </div>

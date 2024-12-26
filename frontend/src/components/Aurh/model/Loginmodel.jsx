@@ -52,6 +52,7 @@ export default function Loginmodal() {
 
     const logoutUser = () => {
         localStorage.removeItem("token")
+        localStorage.removeItem("logged")
         setToken("")
         navigate("/")
         toast.success('Logout Succesfully', {

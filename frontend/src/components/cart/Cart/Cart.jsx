@@ -4,11 +4,13 @@ import Emptycart from "../Emptycart/Emptycart"
 import { BiRupee } from "react-icons/bi";
 import QuantitySelector from "../Quantity/Quantity"
 import "./Cart.css"
+import Guestcart from "../Guestcart/Guestcart";
+import { ToastContainer,toast } from "react-toastify";
 
 
 function Cart() {
     let [prod, setProd] = useState([])
-    let [logged, setLogged] = useState("")
+    let [logged, setLogged] = useState(localStorage.getItem("logged"))
     let [priceDetails, setPriceDetails] = useState({
         bagTotal: 0,
         savings: 0,
@@ -16,8 +18,8 @@ function Cart() {
         shippingCharges: 0,
         orderTotal: 0
     });
+    const storedtoken = localStorage.getItem("token")
     useEffect(() => {
-        const storedtoken = localStorage.getItem("token")
         if (storedtoken) {
             setLogged(storedtoken)
             axios.get("http://localhost:1234/routes/getcartdata", {
@@ -25,16 +27,25 @@ function Cart() {
                     Authorization: `Bearer ${localStorage.getItem("token")}`
                 },
             }).then((res) => {
-                setProd(res.data.result || [])
-                setPriceDetails(res.data.priceDetails || {});
-                // console.log(res.data);
+                if (res.data.ok) {
+                    setProd(res.data.result || []);  // Set cart items
+                    setPriceDetails(res.data.priceDetails || {});  // Set price details
+                } else {
+                    // Handle empty cart response
+                    toast.info(res.data.result);  // Show a message like 'Cart is empty'
+                    setProd([]);  // Empty the cart items
+                    setPriceDetails({});  // Reset price details
+                }
             }).catch((err) => {
                 console.log(err);
-            })
+                console.error(err);
+                toast.error("Error fetching cart data");
+            });
         } else {
-            setLogged("")
+            setLogged("");  // Reset logged status if no token
         }
-    }, [])
+        
+    }, [storedtoken])
 
     const removeitem = (id) => {
         axios.delete(`http://localhost:1234/routes/deletecartproduct/${id}`, {
@@ -43,11 +54,17 @@ function Cart() {
                 Authorization: `Bearer ${localStorage.getItem("token")}`
             },
         }).then((res) => {
-            // console.log(res.data);
-            setProd(res.data.cart || [])
-            setPriceDetails(res.data.priceDetails || {});
+            if (res.data.ok) {
+                setProd(res.data.cart || []); // Update cart products
+                setPriceDetails(res.data.priceDetails || {}); // Update price details
+                toast.success("Item removed from cart!");  // Show success toast
+            } else {
+                console.error("Failed to update cart:", res.data.message);
+                toast.error("Failed to remove item from cart.");  // Show error toast
+            }
         }).catch((err) => {
-            console.log(err)
+            console.error("Error while removing item from cart:", err);
+            toast.error("An error occurred while removing the item.");  // Sh
         })
 
 
@@ -65,7 +82,7 @@ function Cart() {
         <div className="container-fluid">
             {logged ? (
                 <div className="container p-0 pricedetails_containe ">
-
+<ToastContainer/>
                     <div className="">
                         {
                             prod.length > 0 ? (
@@ -84,9 +101,6 @@ function Cart() {
                                             </div>
                                         </div>
                                     </div>
-
-
-
                                 })
                             ) : (
                                 <h1 className=" m-0  text-center"><Emptycart /></h1>
@@ -110,6 +124,7 @@ function Cart() {
                 <div className="container">
                     <div>
                         <h3>please login to cart data</h3>
+                        <Guestcart/>
                     </div>
                 </div>
             )}

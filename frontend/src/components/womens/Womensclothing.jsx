@@ -19,8 +19,8 @@ function Womensclothing() {
         <div className="container-fluid">
 
             {wpoducts.length > 0 && <div className="row my-4 row-gap-3 ">
-                {wpoducts.map((ele) => {
-                    return <Womenscard products={ele} />
+                {wpoducts.map((ele,ind) => {
+                    return <Womenscard products={ele} key={ind}/>
                 })
                 }</div>}
             

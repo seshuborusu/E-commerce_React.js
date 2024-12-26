@@ -50,7 +50,7 @@ function NavScrollExample() {
                             <div style={{ width: "140px" }}><Loginmodel/></div>
 
                         </div>
-                        {   <div><Link to={"/cart"}><i class="bi bi-bag-check fs-4 bag text-dark"></i></Link></div>}
+                        {   <div><Link to={"/cart"}><i className="bi bi-bag-check fs-4 bag text-dark"></i></Link></div>}
                     </div>
                 </Navbar.Collapse>
             </Container>

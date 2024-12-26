@@ -14,7 +14,7 @@ function Electronics() {
 
     const getElectronics = () => {
         electronicsService().then((products) => {
-            console.log(products.data);
+            // console.log(products.data);
             setElectronicsproducts(products.data)
         }).catch((err) => {
             alert("no data")
@@ -39,8 +39,8 @@ function Electronics() {
             <div className="my-3 ">
                 {electronicproducts.length > 0 &&
                     <div className="row row-gap-4">
-                        {electronicproducts.map((product) => {
-                            return <Electriccard products={product} />
+                        {electronicproducts.map((product,ind) => {
+                            return <Electriccard products={product} key={ind}/>
                         })
 
                         }

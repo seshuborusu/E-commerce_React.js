@@ -2,7 +2,7 @@ function Footer() {
     return (
         <div className="container-fluid mt-4 ">
 
-            <div className="row  fw-normal bg-dark text-light row-gap-3 py-3" style={{ fontSize: "13px" }}>
+            <div className="row  fw-normal bg-dark text-light row-gap-3 py-3">
                 <div className="col-6 col-lg-3 col-md-6">
                     <p className="text-secondary  "> ABOUT</p>
                     <div style={{ fontSize: "10px" }}>
