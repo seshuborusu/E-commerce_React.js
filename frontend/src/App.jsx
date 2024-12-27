@@ -11,6 +11,8 @@ import Productdetails from "./components/productdetails/Productdetails";
 
 import Cart from "./components/cart/Cart/Cart";
 import NavScrollExample from "../src/components/Navbar/Navbar"
+import Addressform from "./components/orders/Adressform/Adressform";
+import { Placeholder } from "react-bootstrap";
 function App() {  
     
     return (
@@ -29,10 +31,12 @@ function App() {
                 <Route path="/womens" element={<Womensclothing />} />
                 <Route path="/productdetails/:id" element={<Productdetails />} />
                 <Route path="/cart" element={<Cart />} />
+                <Route path="/address" element={<Addressform/>}/>
+                <Route path="/placeorder" element={<Placeholder/>}/>
 
             
 
-                        <Route path="*" element={<Pagenotfound />} />
+             <Route path="*" element={<Pagenotfound />} />
 
             </Routes>
           

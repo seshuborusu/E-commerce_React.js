@@ -4,6 +4,7 @@ const mongoose = require("mongoose")
 const productmodel = require("../backend/model/connection")
 const cartrouter=require("../backend/routes/cartRoutes")
 const userroute = require("./routes/authRoute")
+const orderrouter=require("./routes/orderRoute")
 
 
 
@@ -35,6 +36,8 @@ app.use("/routes",userroute) //get for login http://localhost:1234/routes/getuse
 app.use("/routes",cartrouter)
 
 app.use("/routes",userroute)
+
+app.use("/routes",orderrouter)
 
 app.post("/addproduct", async (req, res) => {
     const data = req.body

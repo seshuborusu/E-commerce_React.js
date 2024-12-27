@@ -11,7 +11,7 @@ const getMenproducts=()=>{
 mensService().then((products)=>{
 setMproducts(products.data)
 }).catch(()=>{
-    alert("no data")
+    alert("Something Went Wrong. Try Again")
 })
 document.title = "Mens Wear"
 }

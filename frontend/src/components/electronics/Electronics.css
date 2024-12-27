@@ -21,12 +21,3 @@
         background-image: url("https://rukminim1.flixcart.com/fk-p-flap/1620/270/image/fac0652bee3b3e64.jpg?q=20");
     }
 }
-.card_title{
-    display: block; /* Set display to block */
-  overflow: hidden; /* Hide overflow text */
-  text-overflow: ellipsis; /* Show ellipsis for overflow text */
-  line-clamp: 2; /* Limit to 2 lines */
-  -webkit-line-clamp: 2; /* Fallback for WebKit browsers */
-  -webkit-box-orient: vertical; /* Fallback for WebKit browsers */
-  display: -webkit-box; /* Fallback for WebKit browsers */
-}

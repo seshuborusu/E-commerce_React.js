@@ -2,6 +2,22 @@
     font-size: 14px;
     font-weight: 400;
     color: rgb(5, 5, 5);
+
+    display: block;
+    /* Set display to block */
+    overflow: hidden;
+    /* Hide overflow text */
+    text-overflow: ellipsis;
+    /* Show ellipsis for overflow text */
+    line-clamp: 2;
+    /* Limit to 2 lines */
+    -webkit-line-clamp: 2;
+    /* Fallback for WebKit browsers */
+    -webkit-box-orient: vertical;
+    /* Fallback for WebKit browsers */
+    display: -webkit-box;
+    /* Fallback for WebKit browsers */
+
 }
 
 .card_text {

@@ -9,7 +9,7 @@ function Jewellery() {
         jewelleryService().then((products) => {
             setJproducts(products.data)
         }).catch(() => {
-            alert("no data")
+            alert("Something Went Wrong. Try Again")
         })
         document.title = "Jewellery products"
     }, [])

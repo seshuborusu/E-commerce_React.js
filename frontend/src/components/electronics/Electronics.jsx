@@ -17,7 +17,7 @@ function Electronics() {
             // console.log(products.data);
             setElectronicsproducts(products.data)
         }).catch((err) => {
-            alert("no data")
+            alert("Something Went Wrong. Try Again")
             console.log(err);
 
         })

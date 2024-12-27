@@ -308,6 +308,9 @@ console.log(guestCart);
 
 
 
+
+
+
 const mergeGuestCart = () => {
    const guestCart = JSON.parse(localStorage.getItem("cart")) || [];
    const token = localStorage.getItem("token");

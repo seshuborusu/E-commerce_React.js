@@ -1,6 +1,19 @@
-.pricedetails_container{
-    width: 70%;
-    background-color: white;
+.ele-title{
+    display: block;
+    /* Set display to block */
+    overflow: hidden;
+    /* Hide overflow text */
+    text-overflow: ellipsis;
+    /* Show ellipsis for overflow text */
+    line-clamp: 2;
+    /* Limit to 2 lines */
+    -webkit-line-clamp: 2;
+    /* Fallback for WebKit browsers */
+    -webkit-box-orient: vertical;
+    /* Fallback for WebKit browsers */
+    display: -webkit-box;
+    /* Fallback for WebKit browsers */
+
 }
 .rupee{
     font-size: 15px;
@@ -10,8 +23,81 @@
     font-size: 14px;
     margin-bottom: 3px;
 }
+.cart-btn{
+    font-size: 13px;
+    border: none;
+    padding: 5px 5px;
+    margin: 0px 5px;
+    background-color: white;
+    align-items: end;
+
+
+}
+.order-container h6{
+    font-size: 15px;
+    font-weight: 700;
+    margin: 0;
+}
+.order-container p{
+    font-size: 13px;
+    color: black(0, 0, 255, 0.808);
+    margin: 0;
+}
+.orderplace-btn{
+    padding: 10px 105px;
+    border: none;
+    background-color: rgb(250, 44, 79);
+    font-size: 17px;
+    font-weight: 700;
+    color: white;
+    border-radius: 10px;
+
+}
 @media screen and  (min-width:0px) and (max-width:575px){
-.pricedetails_container{
-    width: 100%;
+.cart-image{
+    margin: 0;
+    padding: 0!important;
+    border: 1px solid gray;
+    align-items: flex-start;
+}
+.cart-title{
+    font-size: 13px!important;
+}
+.cart-price{
+    font-size: 13px;
+    font-weight: 800;
+}
+.cart-btn{
+    font-size: 13px;
+    border: none;
+    padding: 5px 5px;
+    margin: 0px 5px;
+    background-color: white;
+}
+.price-details p{
+font-size: 13px;
+}
+.price-details h6{
+    font-size: 15px;
+}
+.order-container h6{
+    font-size: 13px;
+    font-weight: 700;
+    margin: 0;
+}
+.order-container p{
+    font-size: 12px;
+    color: black(0, 0, 255, 0.808);
+    margin: 0;
+}
+.orderplace-btn{
+    padding: 7px 35px;
+    border: none;
+    background-color: rgb(250, 44, 79);
+    font-size: 13px;
+    font-weight: 700;
+    color: white;
+    border-radius: 8px;
+
 }
 }

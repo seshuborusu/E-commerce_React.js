@@ -5,7 +5,8 @@ import { BiRupee } from "react-icons/bi";
 import QuantitySelector from "../Quantity/Quantity"
 import "./Cart.css"
 import Guestcart from "../Guestcart/Guestcart";
-import { ToastContainer,toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+import Placeorder from "../../orders/Placeorder/Placeorder";
 
 
 function Cart() {
@@ -44,7 +45,7 @@ function Cart() {
         } else {
             setLogged("");  // Reset logged status if no token
         }
-        
+
     }, [storedtoken])
 
     const removeitem = (id) => {
@@ -77,27 +78,30 @@ function Cart() {
         return "0"; // Return 0 if price is not a valid number
     };
 
+    const placeOrder = () => {
 
+    }
     return (
         <div className="container-fluid">
             {logged ? (
-                <div className="container p-0 pricedetails_containe ">
-<ToastContainer/>
+                <div className="container p-0 ">
+                    <ToastContainer />
                     <div className="">
                         {
                             prod.length > 0 ? (
                                 prod.map((ele, ind) => {
                                     // console.log(ele);
-                                    return <div className="row mt-4 d-flex justify-content-between align-items-center p-2 border-bottom" key={ind} >
-                                        <div className="col-2  p-3"><img src={ele.image} height={135} width={"100%"}></img></div>
-                                        <div className="col-10  px-3 "><p className="fw-normal">{ele.title}</p>
-                                            <h5><i class="bi bi-currency-rupee"></i>{formatPrice(ele.price)}</h5>
+                                    return <div className="row mt-4 d-flex align-items-cente p-2 border-bottom" key={ind} >
+                                        <div className="col-3 col-lg-2 col-md-2 p-3 cart-image"><img src={ele.image} height={135} width={"100%"}></img></div>
+                                        <div className="col-9 col-lg-10 col-md-10  px-3  cart-title"><div className="ele-title"><p className="">{ele.title}</p></div>
+                                            <h5 className="cart-price"><i class="bi bi-currency-rupee"></i>{formatPrice(ele.price)}</h5>
                                             <QuantitySelector id={ele._id} setprod={setProd} quan={ele.quantity} setPriceDetails={setPriceDetails} />
-                                            <div className="mt-3">
-                                                <button className="btn btn-sm btn-light me-5" onClick={() => {
+                                            <div className="mt-3 d-flex ">
+                                                <button className="cart-btn" onClick={() => {
                                                     removeitem(ele._id)
                                                 }}>Remove</button>
-                                                <button className="btn btn-sm btn-light ">Move To Wishlist</button>
+
+                                                <button className=" cart-btn ">Wishlist</button>
                                             </div>
                                         </div>
                                     </div>
@@ -108,23 +112,32 @@ function Cart() {
                         }
                     </div>
                     {prod.length > 0 &&
-                        <div className="container mt-5 border p-3" >
-                            <div><h6 className="fw-bold "> Price Details</h6>
-                                <div className="d-flex justify-content-between "> <p>Total MRP : </p><p className="rupee"><BiRupee className="insiderupee" />{formatPrice(priceDetails.bagTotal)}</p></div>
-                                <div className="d-flex justify-content-between "> <p>Savings on MRP:</p><p className="rupee"><BiRupee className="insiderupee" />{formatPrice(priceDetails.savings)}</p></div>
-                                <div className="d-flex justify-content-between "> <p>Sub Total :</p><p className="rupee"><BiRupee className="insiderupee" />{formatPrice(priceDetails.subtotal)}</p></div>
-                                <div className="d-flex justify-content-between border-bottom "> <p>Shipping & Other Charges :</p><p className="rupee"><BiRupee className="insiderupee" />{formatPrice(priceDetails.shippingCharges)}</p></div>
-                                <div className="d-flex justify-content-between fw-bold my-2"> <h6>Order Total:</h6><h6 className="rupee fw-bold"><BiRupee className="insiderupee" />{formatPrice(priceDetails.orderTotal)}</h6></div>
+                        <div>
+                            <div className="container mt-5 border p-3" >
+                                <div className="price-details"><h6 className="fw-bold "> Price Details</h6>
+                                    <div className="d-flex justify-content-between "> <p>Total MRP : </p><p className="rupee"><BiRupee className="insiderupee" />{formatPrice(priceDetails.bagTotal)}</p></div>
+                                    <div className="d-flex justify-content-between "> <p>Savings on MRP:</p><p className="rupee"><BiRupee className="insiderupee" />{formatPrice(priceDetails.savings)}</p></div>
+                                    <div className="d-flex justify-content-between "> <p>Sub Total :</p><p className="rupee"><BiRupee className="insiderupee" />{formatPrice(priceDetails.subtotal)}</p></div>
+                                    <div className="d-flex justify-content-between border-bottom "> <p>Shipping & Other Charges :</p><p className="rupee"><BiRupee className="insiderupee" />{formatPrice(priceDetails.shippingCharges)}</p></div>
+                                    <div className="d-flex justify-content-between fw-bold my-2  "> <h6 className="fw-bold">Order Total:</h6><h6 className="rupee fw-bold"><BiRupee className="insiderupee" />{formatPrice(priceDetails.orderTotal)}</h6></div>
+
+                                </div>
 
                             </div>
-
+                            {/* //placeorder component */}
+                            <div> <Placeorder
+                                priceDetails={priceDetails}
+                                prod={prod}
+                                setPriceDetails={setPriceDetails}
+                                setProd={setProd}
+                            /></div>
                         </div>
                     }
                 </div>) : (
                 <div className="container">
                     <div>
                         <h3>please login to cart data</h3>
-                        <Guestcart/>
+                        <Guestcart />
                     </div>
                 </div>
             )}

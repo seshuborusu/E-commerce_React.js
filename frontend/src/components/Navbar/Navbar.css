@@ -1,31 +1,56 @@
-.link-font:hover {
-    color: rgb(253, 40, 76);
-}
-
-.link-font {
-    color: black;
-}
-.link-font:hover,
-.link-font:active,
-.link-font:focus {
-    color: rgb(253, 40, 76); /* Pink color on hover, active, or focus */
-}
-.bar {
-    width: 100%;
-
-}
-
-
-/* .signup-button {
-    background-color: rgb(250, 50, 117);
+.login-btn {
+    background-color: rgb(252, 52, 85);
     color: white;
     font-weight: 600;
-} */
-
-.seach-container {
-    width: 400px;
+    padding: 7px 16px;
+    border-radius: 10px;
+    font-size: 16px;
+    border: none;
 }
 
-@media screen and (min-width:257px) {
-   
+.login-btn:hover {
+    background-color: rgb(253, 73, 103);
+    color: white;
+}
+
+.login-btn:active {
+    background-color: palegreen;
+}
+
+.nav-link {
+    color: black;
+    font-weight: 700;
+    font-size: 15px;
+    font-family: sans-serif;
+}
+
+.nav-link:hover {
+    color: rgb(252, 41, 76);
+}
+
+@media (max-width:992px) {
+    .nav-container {
+        margin: 0 0 !important;
+    }
+
+    .cart-icon {
+        font-size: 21px !important;
+        padding: 0;
+        margin: 0px 0px;
+
+    }
+
+    .menubar {
+        font-size: 21px !important;
+        color: black;
+        padding: 0;
+    }
+
+    .login-btn-hide {
+        display: none;
+    }
+
+    .profile-icon {
+        font-size: 21px !important;
+    }
 }

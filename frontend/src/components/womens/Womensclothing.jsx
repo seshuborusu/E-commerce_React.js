@@ -11,7 +11,7 @@ function Womensclothing() {
         womensService().then((products) => {
             setWproducts(products.data)
         }).catch(() => {
-            alert("no data")
+            alert("Something Went Wrong. Try Again")
         })
         document.title = "Womens wear"
     }
