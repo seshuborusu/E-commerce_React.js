@@ -19,7 +19,7 @@ userroute.post("/signup", async (req, res) => {
         } else {
             const data = new usermodel({ name, mobile, password })
             const a = await data.save()
-            console.log(a, data);
+            console.log(a,"kk", data);
 
             return res.status(201).json({
                 ok: true,

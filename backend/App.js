@@ -5,6 +5,7 @@ const productmodel = require("../backend/model/connection")
 const cartrouter=require("../backend/routes/cartRoutes")
 const userroute = require("./routes/authRoute")
 const orderrouter=require("./routes/orderRoute")
+const addressRoute=require("./routes/addressRoute")
 
 
 
@@ -38,6 +39,12 @@ app.use("/routes",cartrouter)
 app.use("/routes",userroute)
 
 app.use("/routes",orderrouter)
+
+app.use("/routes",orderrouter)
+
+app.use("/routes",addressRoute)
+
+app.use("/routes",addressRoute)
 
 app.post("/addproduct", async (req, res) => {
     const data = req.body

@@ -6,7 +6,7 @@ import QuantitySelector from "../Quantity/Quantity"
 import "./Cart.css"
 import Guestcart from "../Guestcart/Guestcart";
 import { ToastContainer, toast } from "react-toastify";
-import Placeorder from "../../orders/Placeorder/Placeorder";
+import Placeorder from "../../orders/Placeorder-btn/Placeorder";
 
 
 function Cart() {
@@ -78,9 +78,6 @@ function Cart() {
         return "0"; // Return 0 if price is not a valid number
     };
 
-    const placeOrder = () => {
-
-    }
     return (
         <div className="container-fluid">
             {logged ? (
@@ -122,15 +119,12 @@ function Cart() {
                                     <div className="d-flex justify-content-between fw-bold my-2  "> <h6 className="fw-bold">Order Total:</h6><h6 className="rupee fw-bold"><BiRupee className="insiderupee" />{formatPrice(priceDetails.orderTotal)}</h6></div>
 
                                 </div>
-
                             </div>
                             {/* //placeorder component */}
                             <div> <Placeorder
                                 priceDetails={priceDetails}
-                                prod={prod}
-                                setPriceDetails={setPriceDetails}
-                                setProd={setProd}
                             /></div>
+                            
                         </div>
                     }
                 </div>) : (

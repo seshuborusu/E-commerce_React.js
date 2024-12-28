@@ -10,7 +10,13 @@ const orderSchema = mongoose.Schema({
     ],
     totalAmount: Number,
     ShippingAddress: {
-        type: String
+        // user_id:Number,
+        name: String, // To store the name of the user
+        street: String, // Street address
+        city: String,
+        state: String,
+        zip: Number,
+        phoneNumber: Number
     },
     paymentStatus: String
 })

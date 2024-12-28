@@ -34,6 +34,7 @@ const QuantitySelector = ({ id, setprod, quan,setPriceDetails }) => {  // Ensure
                 })
                 .catch((err) => {
                     alert("error")
+                    console.log(err);
                     // toast.error('Error updating quantity: ' + (err.response ? err.response.data.message : err.message));
                 });
         }
