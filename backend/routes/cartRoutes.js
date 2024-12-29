@@ -2,9 +2,16 @@ const express = require("express")
 const usermodel = require("../model/Auth")
 const jwt = require("jsonwebtoken")
 const secret_Key = "asbncjhbcnvhj";
+const jwtAuthentication=require("../middleware/token")
 
 
 const cartrouter = express.Router()
+
+
+
+
+
+
 
 cartrouter.post("/cart", async (req, res) => {
    const token = req.headers.authorization?.slice(7); // Extract token from Authorization header
@@ -17,7 +24,7 @@ cartrouter.post("/cart", async (req, res) => {
       // Verify the token
       const decoded = jwt.verify(token, secret_Key);
       req.user = decoded; // Attach decoded user info to the request
-
+      // console.log(decoded);
       const cartdata = req.body;
       // console.log(cartdata);
 
@@ -58,22 +65,10 @@ cartrouter.post("/cart", async (req, res) => {
 });
 
 
-cartrouter.get("/getcartdata", (req, res, next) => {
-   const token = req.headers.authorization.slice(7)
-   jwt.verify(token, secret_Key, (error, decoded) => {
-      if (error) {
-         res.json("token not match")
-      } else {
-
-         req.user = decoded;
-         // console.log(decoded);
-         next()
-      }
-   })
-}, async (req, res) => {
+cartrouter.get("/getcartdata",jwtAuthentication, async (req, res) => {
 
    try {
-      const userId = req.user.userid;
+      const userId = req.id;
       const user = await usermodel.findById(userId);
 
       if (user) {
@@ -256,7 +251,7 @@ cartrouter.post("/updatequantity/:id", (req, res, next) => {
 
 
 // POST endpoint to merge guest cart with user cart
-cartrouter.post("/cart/merge",(req, res, next) => {
+cartrouter.post("/cart/merge", (req, res, next) => {
    const token = req.headers.authorization.slice(7)
    jwt.verify(token, secret_Key, (error, decode) => {
       if (error) {
@@ -270,17 +265,17 @@ cartrouter.post("/cart/merge",(req, res, next) => {
 }, async (req, res) => {
    const userId = req.user.userid; // User ID from token
    const guestCart = req.body.guestCart; // The guest cart sent from the frontend
-console.log(guestCart);
+   console.log(guestCart);
    try {
       const user = await usermodel.findById(userId);
-      console.log(userId,"hiii");
+      console.log(userId, "hiii");
       if (!user) {
          return res.status(404).json({ message: "User not found" });
       }
 
       if (!user.cart) {
          user.cart = [];
-     }
+      }
       // Merge guest cart with user's cart
       guestCart.forEach(guestItem => {
          const existingItem = user.cart.find(item => item._id == guestItem._id);

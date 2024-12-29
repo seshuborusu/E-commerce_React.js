@@ -16,7 +16,7 @@ orderrouter.post("/placeorder", async (req, res) => {
         // Verify the token
         const decoded = jwt.verify(token, secret_Key);
         req.user = decoded; // Attach decoded user info to the request
-        console.log(req.body);
+        // console.log(req.body);
         const { cart, totalAmount, ShippingAddress } = req.body;
         const userId = req.user.userid;
 
@@ -64,7 +64,7 @@ orderrouter.get("/ordersummery", async (req, res) => {
         // Verify the token
         const decoded = jwt.verify(token, secret_Key);
         req.user = decoded; // Attach decoded user info to the request
-        console.log(req.body);
+        // console.log(req.body);
         const userId = req.user.userid;
 
         // Find the user

@@ -1,0 +1,27 @@
+.shipping-title{
+    font-size: 14px;
+    font-weight: 600;
+    margin: 6px;
+}
+.address-container h6{
+    font-weight: 700;
+    text-transform: capitalize;
+}
+.address-container p{
+    font-size: 13px;
+    text-transform: capitalize;
+    margin: 9px 0px;
+}
+.address-container p:nth-of-type(2) span{
+    font-size: 13px;
+    font-weight: 600;
+
+}
+.address-btn{
+    background-color: transparent;
+    color: rgb(255, 41, 77);
+    border: none;
+    padding: 8px 15px;
+    font-weight: 700;
+    font-size: 14px;
+}

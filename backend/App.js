@@ -2,10 +2,10 @@ const express = require("express")
 const cors = require("cors")
 const mongoose = require("mongoose")
 const productmodel = require("../backend/model/connection")
-const cartrouter=require("../backend/routes/cartRoutes")
+const cartrouter = require("../backend/routes/cartRoutes")
 const userroute = require("./routes/authRoute")
-const orderrouter=require("./routes/orderRoute")
-const addressRoute=require("./routes/addressRoute")
+const orderrouter = require("./routes/orderRoute")
+const addressRoute = require("./routes/addressRoute")
 
 
 
@@ -14,37 +14,35 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-async function connectDb() {
-    await mongoose.connect("mongodb://localhost:27017/productsdb")
-    
-
+function connectDb() {
+     mongoose.connect("mongodb+srv://seshuborusu5:YJ335Vphiu7pMrBs@cluster0.jlb7f.mongodb.net/productdb?retryWrites=true&w=majority&appName=Cluster0").then(() => { console.log("started"); }).catch(() => { console.log("err"); })
 
 }
 
 connectDb()
 
 
-app.use("/routes",cartrouter) //
+app.use("/routes", cartrouter) //
 
-app.use("/routes",cartrouter)
+app.use("/routes", cartrouter)
 
-app.use("/routes",cartrouter)
+app.use("/routes", cartrouter)
 
-app.use("/routes",userroute) //post users signup
+app.use("/routes", userroute) //post users signup
 
-app.use("/routes",userroute) //get for login http://localhost:1234/routes/getuser
+app.use("/routes", userroute) //get for login http://localhost:1234/routes/getuser
 
-app.use("/routes",cartrouter)
+app.use("/routes", cartrouter)
 
-app.use("/routes",userroute)
+app.use("/routes", userroute)
 
-app.use("/routes",orderrouter)
+app.use("/routes", orderrouter)
 
-app.use("/routes",orderrouter)
+app.use("/routes", orderrouter)
 
-app.use("/routes",addressRoute)
+app.use("/routes", addressRoute)
 
-app.use("/routes",addressRoute)
+app.use("/routes", addressRoute)
 
 app.post("/addproduct", async (req, res) => {
     const data = req.body
@@ -72,23 +70,23 @@ app.get("/getsingleproduct/:id", async (req, res) => {
     }
 })
 
-app.get("/getelectronics",async(req,res)=>{
-   const data=await productmodel.find({category: 'electronics'})
-   res.json(data);
+app.get("/getelectronics", async (req, res) => {
+    const data = await productmodel.find({ category: 'electronics' })
+    res.json(data);
 })
 
-app.get("/getjewelery",async(req,res)=>{
-   const data=await productmodel.find({ category: 'jewelery'})
-   res.json(data)
-})
-
-app.get("/getmensclothing",async(req,res)=>{
-    const data=await productmodel.find({category: "men's clothing"})
+app.get("/getjewelery", async (req, res) => {
+    const data = await productmodel.find({ category: 'jewelery' })
     res.json(data)
 })
 
-app.get("/getwomensclothing",async(req,res)=>{
-    const data=await productmodel.find({category: "women's clothing"})
+app.get("/getmensclothing", async (req, res) => {
+    const data = await productmodel.find({ category: "men's clothing" })
+    res.json(data)
+})
+
+app.get("/getwomensclothing", async (req, res) => {
+    const data = await productmodel.find({ category: "women's clothing" })
     res.json(data)
 })
 

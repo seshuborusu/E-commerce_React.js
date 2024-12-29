@@ -52,38 +52,38 @@ function Addressform() {
             <div className=" d-flex justify-content-cente flex-column">
                 <h3 className='text-center fw-bold mb-4'>Shipping Address</h3>
                 <div className="row d-flex justify-content-center">
-                    <div class="col-12 col-md-8 mb-2">
-                        <label for="exampleFormControlInput1" class="form-label mb-1 fw-semibold">Name</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="John " onChange={handleInputChange} name='name' />
+                    <div className="col-12 col-md-8 mb-2">
+                        <label for="exampleFormControlInput1" className="form-label mb-1 fw-semibold">Name</label>
+                        <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="John " onChange={handleInputChange} name='name' />
                     </div>
-                    <div class="col-12 col-md-8 mb-2 ">
-                        <label for="exampleFormControlInput1" class="form-label mb-1 fw-semibold">Phone Number</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Tie" onChange={handleInputChange} name='phone' />
+                    <div className="col-12 col-md-8 mb-2 ">
+                        <label for="exampleFormControlInput1" className="form-label mb-1 fw-semibold">Phone Number</label>
+                        <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="Tie" onChange={handleInputChange} name='phone' />
                     </div>
                 </div>
                 <div className="row d-flex justify-content-center">
-                    <div class="mb-2 col-12 col-md-2">
-                        <label for="exampleFormControlInput1" class="form-label mb-1 fw-semibold">Pincode</label>
-                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="000000" onChange={handleInputChange} name='zip' />
+                    <div className="mb-2 col-12 col-md-2">
+                        <label for="exampleFormControlInput1" className="form-label mb-1 fw-semibold">Pincode</label>
+                        <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="000000" onChange={handleInputChange} name='zip' />
                     </div>
-                    <div class="mb-2 col-12 col-md-3">
-                        <label for="exampleFormControlInput1" class="form-label mb-1 fw-semibold">City</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter city" onChange={handleInputChange} name='city' />
+                    <div className="mb-2 col-12 col-md-3">
+                        <label for="exampleFormControlInput1" className="form-label mb-1 fw-semibold">City</label>
+                        <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="Enter city" onChange={handleInputChange} name='city' />
                     </div>
-                    <div class="mb-2 col-12 col-md-3">
-                        <label for="exampleFormControlInput1" class="form-label mb-1 fw-semibold">State</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter State" onChange={handleInputChange} name='state' />
+                    <div className="mb-2 col-12 col-md-3">
+                        <label for="exampleFormControlInput1" className="form-label mb-1 fw-semibold">State</label>
+                        <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="Enter State" onChange={handleInputChange} name='state' />
                     </div>
 
                 </div>
                 <div className="row d-flex justify-content-center">
-                    <div class="mb-2 col-12 col-md-5">
-                        <label for="exampleFormControlInput1" class="form-label mb-1 text-dark fw-semibold">Address</label>
-                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Address" onChange={handleInputChange} name='address' />
+                    <div className="mb-2 col-12 col-md-5">
+                        <label for="exampleFormControlInput1" className="form-label mb-1 text-dark fw-semibold">Address</label>
+                        <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="Address" onChange={handleInputChange} name='address' />
                     </div>
-                    <div class="mb-2 col-12 col-md-3">
-                        <label for="exampleFormControlInput1" class="form-label mb-1 fw-semibold">Street</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Street" onChange={handleInputChange} name='street' />
+                    <div className="mb-2 col-12 col-md-3">
+                        <label for="exampleFormControlInput1" className="form-label mb-1 fw-semibold">Street</label>
+                        <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="Street" onChange={handleInputChange} name='street' />
                     </div>
                 </div>
 
