@@ -3,12 +3,14 @@ const mongoose = require("mongoose")
 
 const addressSchema = new mongoose.Schema({
     name: { type: String,  },
-    street: { type: String,  },
+    phone:{type:Number},
+    zip: { type: Number,  },
     city: { type: String,  },
     state: { type: String,  },
-    zip: { type: String,  },
-    phoneNumber: { type: String,  },
+    address:{type:String},
+    street: { type: String,  },
     isDefault: { type: Boolean, default: false },  // Optional field to mark the default address
+
 });
 
 

@@ -12,11 +12,13 @@ const orderSchema = mongoose.Schema({
     ShippingAddress: {
         // user_id:Number,
         name: String, // To store the name of the user
-        street: String, // Street address
+        phone: Number,
+        zip: Number,
         city: String,
         state: String,
-        zip: Number,
-        phoneNumber: Number
+        address: String,
+        street: String, // Street address
+
     },
     paymentStatus: String
 })

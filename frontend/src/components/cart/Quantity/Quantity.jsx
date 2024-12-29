@@ -17,7 +17,9 @@ const QuantitySelector = ({ id, setprod, quan,setPriceDetails }) => {  // Ensure
         }
     };
 
+
     useEffect(() => {
+        // console.log(id)
         if (quantity && !isNaN(quantity)) { // Ensure quantity is valid before making the request
             // console.log(quantity);
             axios.post(`http://localhost:1234/routes/updatequantity/${id}`, { quantity },

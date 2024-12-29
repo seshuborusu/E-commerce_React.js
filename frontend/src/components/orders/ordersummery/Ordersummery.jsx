@@ -3,6 +3,9 @@ import { useState, useEffect } from "react"
 import { BiRupee } from "react-icons/bi"
 import { useNavigate } from "react-router-dom"
 const token = localStorage.getItem("token")
+import Quantity from "../../cart/Quantity/Quantity"
+import Shippingaddress from "../shippingaddress/Shippingaddress"
+import "./Ordersummery.css"
 function Ordersummery() {
     const [cart, setCart] = useState([])
     const [address, setAddress] = useState([])
@@ -14,7 +17,7 @@ function Ordersummery() {
 
     useEffect(() => {
         if (!token) {
-            navigate('/')
+            // navigate('/')
         } else {
 
             axios.get("http://localhost:1234/routes/ordersummery", {
@@ -43,7 +46,7 @@ function Ordersummery() {
             })
         }
 
-    }, [navigate])
+    }, [])
 
     const handlePlaceOrderClick = async () => {
         // Check if address exists
@@ -101,31 +104,33 @@ function Ordersummery() {
 
     return (
         <div>
-            <div className="container">
+            <div className="container ">
+                <Shippingaddress />
+                <div className="border mb-4">Shippinddetais      </div>
 
-                <div>Shippinddetais <p>{address.state}</p> <p>{address.name}</p></div>
                 {
                     cart.length > 0 &&
 
                     cart.map((ele, ind) => {
-                        return <div className="row mt-4 d-flex align-items-center p-2 border-bottom" key={ind} >
-                            <div className="col-3 col-lg-2 col-md-2 p-3 cart-image"><img src={ele.image} height={115} width={"100%"}></img></div>
-                            <div className="col-9 col-lg-10 col-md-10  px-3  cart-title"><div className="ele-title"><p className="">{ele.title}</p></div>
-                                <h5 className="cart-price"><i class="bi bi-currency-rupee"></i>{formatPrice(ele.price)}</h5>
+                        return <div className="  mt-1 border-bottom align-items-center d-flex " key={ind} >
+                            <div> <img src={ele.image} height={"45px"} width={"40px"} /> </div>
+                            <div className=" summery-cart-title mt-3"><div className="ele-title ms-3"><p className=""> {ele.title}</p></div>
                             </div>
                         </div>
                     })
                 }
 
+
                 <div className="container mt-5 border p-3" >
-                    <div className="price-details"><h6 className="fw-bold "> Price Details</h6>
+                    <div className="summery-price-details"><h6 className="fw-bold "> Price Details</h6>
                         <div className="d-flex justify-content-between "> <p>Total MRP : </p><p className="rupee"><BiRupee className="insiderupee" />{formatPrice(price.bagTotal)}</p></div>
                         <div className="d-flex justify-content-between "> <p>Savings on MRP:</p><p className="rupee"><BiRupee className="insiderupee" />{formatPrice(price.savings)}</p></div>
                         <div className="d-flex justify-content-between "> <p>Sub Total :</p><p className="rupee"><BiRupee className="insiderupee" />{formatPrice(price.subtotal)}</p></div>
                         <div className="d-flex justify-content-between border-bottom "> <p>Shipping & Other Charges :</p><p className="rupee"><BiRupee className="insiderupee" />{formatPrice(price.shippingCharges)}</p></div>
-                        <div className="d-flex justify-content-between fw-bold my-2  "> <h6 className="fw-bold">Order Total:</h6><h6 className="rupee fw-bold"><BiRupee className="insiderupee" />{formatPrice(price.orderTotal)}</h6></div>
-                        <div className=""><button onClick={handlePlaceOrderClick}>Continue Payment</button></div>
+                        <div className="d-flex justify-content-between fw-bold my-3  "> <h6 className="fw-bold">Order Total:</h6><h6 className="rupee fw-bold"><BiRupee className="insiderupee" />{formatPrice(price.orderTotal)}</h6></div>
+
                     </div>
+                    <div className="  d-flex  justify-content-end me-2 "><button onClick={handlePlaceOrderClick} className="payment-btn ">Continue Payment</button></div>
                 </div>
 
 

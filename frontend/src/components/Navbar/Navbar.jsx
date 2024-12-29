@@ -3,7 +3,7 @@ import { Navbar, Nav, Container, Button, Offcanvas } from "react-bootstrap";
 import { Link } from "react-router-dom"; // Import Link from React Router DOM
 import "./Navbar.css"
 import { TfiMenu } from "react-icons/tfi";
-import Loginmodal from "../Aurh/model/Loginmodel";
+import Loginmodal from "../Auth/model/Loginmodel";
 const ResponsiveNavbar = () => {
     const [show, setShow] = useState(false);
 

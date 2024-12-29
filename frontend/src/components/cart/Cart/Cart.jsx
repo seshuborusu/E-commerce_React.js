@@ -88,10 +88,11 @@ function Cart() {
                             prod.length > 0 ? (
                                 prod.map((ele, ind) => {
                                     // console.log(ele);
-                                    return <div className="row mt-4 d-flex align-items-cente p-2 border-bottom" key={ind} >
-                                        <div className="col-3 col-lg-2 col-md-2 p-3 cart-image"><img src={ele.image} height={135} width={"100%"}></img></div>
+                                    const totalPrice = ele.price * ele.quantity;
+                                    return <div className="row mt-4 d-flex align-items-center p-2 border-bottom" key={ind} >
+                                        <div className="col-3 col-lg-2 col-md-2 p-2 cart-image"><img src={ele.image} height={105} width={"100%"}></img></div>
                                         <div className="col-9 col-lg-10 col-md-10  px-3  cart-title"><div className="ele-title"><p className="">{ele.title}</p></div>
-                                            <h5 className="cart-price"><i class="bi bi-currency-rupee"></i>{formatPrice(ele.price)}</h5>
+                                            <h5 className="cart-price"><i class="bi bi-currency-rupee"></i>{formatPrice(totalPrice)}</h5>
                                             <QuantitySelector id={ele._id} setprod={setProd} quan={ele.quantity} setPriceDetails={setPriceDetails} />
                                             <div className="mt-3 d-flex ">
                                                 <button className="cart-btn" onClick={() => {
@@ -124,7 +125,7 @@ function Cart() {
                             <div> <Placeorder
                                 priceDetails={priceDetails}
                             /></div>
-                            
+
                         </div>
                     }
                 </div>) : (

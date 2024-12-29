@@ -1,0 +1,9 @@
+.form-proceedbtn{
+    background-color: rgb(253, 43, 78);
+    padding: 9px 10px;
+    color: white;
+    font-weight: 700;
+    border: 1px solid white;
+    border-radius: 8px;
+    text-align: center;
+}

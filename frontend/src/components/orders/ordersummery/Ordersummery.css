@@ -1,0 +1,36 @@
+.summery-cart-title {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.summery-price-details p {
+    font-size: 14px;
+
+}
+
+.summery-price-details h6 {
+    font-size: 15px;
+}
+
+.payment-btn {
+    background-color: rgb(255, 32, 69);
+    padding: 8px 10px;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    border: none;
+
+}
+
+@media screen and (max-width:572px) {
+    .payment-btn {
+        font-size: 12px;
+        background-color: rgb(255, 32, 69);
+        padding: 7px 7px;
+        border-radius: 8px;
+        color: white;
+        font-weight: 600;
+        border: none;
+
+    }
+}
