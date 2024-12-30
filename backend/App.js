@@ -14,9 +14,10 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-function connectDb() {
-     mongoose.connect("mongodb+srv://seshuborusu5:YJ335Vphiu7pMrBs@cluster0.jlb7f.mongodb.net/productdb?retryWrites=true&w=majority&appName=Cluster0").then(() => { console.log("started"); }).catch(() => { console.log("err"); })
+async function connectDb() {
 
+    // mongoose.connect("mongodb+srv://seshuborusu5:YJ335Vphiu7pMrBs@cluster0.jlb7f.mongodb.net/productdb?retryWrites=true&w=majority&appName=Cluster0").then(() => { console.log("started"); }).catch((err) => { console.log("server not started",err); })
+    await mongoose.connect("mongodb://localhost:27017/productsdb")
 }
 
 connectDb()

@@ -6,11 +6,9 @@ import Quantity from "../../cart/Quantity/Quantity";
 import Shippingaddress from "../shippingaddress/Shippingaddress";
 import "./Ordersummery.css";
 
-const token = localStorage.getItem("token");
-
 function Ordersummery() {
     const [cart, setCart] = useState([]);
-    const [address, setAddress] = useState([]);
+    const [address,setAddress]=useState()
     const [price, setPrice] = useState({
         bagTotal: "",
         savings: "",
@@ -18,59 +16,73 @@ function Ordersummery() {
         shippingCharges: "",
         orderTotal: 0
     });
+const [loading,setLoading]=useState(true)
     const navigate = useNavigate();
 
+
+
+
     useEffect(() => {
+        const token = localStorage.getItem("token");
         if (!token) {
-            // navigate('/');
+             navigate('/');
+            // console.log(token);
         } else {
+            // console.log(token);
+            setLoading(true)
             axios
                 .get("http://localhost:1234/routes/ordersummery", {
                     headers: {
-                        Authorization:` Bearer ${localStorage.getItem("token")}`,
+                        Authorization: ` Bearer ${localStorage.getItem("token")}`,
                     },
                 })
                 .then((res) => {
                     setCart(res.data.result.cart || []);
-                    setAddress(res.data.result.addresses[0] || []);
+                    // console.log(res.data);
+                    setAddress(res.data.result.addresses[0])
+
                 })
                 .catch((err) => {
                     console.log("Error:", err);
                 });
 
-            axios
-                .get("http://localhost:1234/routes/getcartdata", {
-                    headers: {
-                        Authorization:` Bearer ${localStorage.getItem("token")}`,
-                    },
-                })
+            axios.get("http://localhost:1234/routes/getcartdata", {
+                headers: {
+                    Authorization: ` Bearer ${localStorage.getItem("token")}`,
+                },
+            })
                 .then((res) => {
                     setPrice(res.data.priceDetails);
+                    console.log(res.data);
+
                 })
                 .catch((err) => {
                     console.log("Error:", err);
-                });
+                }).finally(()=>{
+                    setLoading(false)
+                })
         }
     }, [navigate]);
 
     const handlePlaceOrderClick = async () => {
         if (!address) {
             navigate("/address");
+            // alert("Addres not found")
         } else {
 
-            console.log(price.orderTotal);
+            // console.log(price.orderTotal);
             const url = "https://api.razorpay.com/v1/payments/qr_codes/qr_FuZIYx6rMbP6gs";
 
             const options = {
                 key: "rzp_test_Su4WV4zdBIGTmZ",
                 entity: url,
-                amount: `${price.orderTotal*100}`,
+                amount: `${price.orderTotal * 100}`,
                 name: "SHOP",
                 description: "Insurance Payment",
                 image: "",
                 handler: async function (response) {
                     const orderDetails = {
-                        
+
                         cart: cart,
                         totalAmount: price.orderTotal,
                         ShippingAddress: address,
@@ -82,7 +94,7 @@ function Ordersummery() {
                             orderDetails,
                             {
                                 headers: {
-                                    Authorization:` Bearer ${localStorage.getItem("token")}`,
+                                    Authorization: ` Bearer ${localStorage.getItem("token")}`,
                                 },
                             }
                         );
@@ -123,6 +135,10 @@ function Ordersummery() {
         }
         return "0";
     };
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <div>

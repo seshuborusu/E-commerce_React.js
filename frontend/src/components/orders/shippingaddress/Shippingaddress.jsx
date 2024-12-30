@@ -16,7 +16,7 @@ function Shippingaddress() {
             },
         }).then((res) => {
             setAddress(res.data.addresses[0])
-            console.log(res.data.addresses[0]);
+            // console.log(res.data.addresses[0]);
         }).catch((err) => {
             alert("err")
         })

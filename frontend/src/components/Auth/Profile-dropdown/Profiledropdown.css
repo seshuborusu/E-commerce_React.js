@@ -1,0 +1,47 @@
+/* ProfileDropdown.css */
+.profile-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 126%;  /* Position below the button */
+    right: -15px;
+    background-color: white;
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    padding: 8px;
+    width: 150px;
+    border-radius: 4px;
+    display: block;  /* Make sure the dropdown is visible */
+    border: 1px solid #ccc; 
+}
+
+.dropdown-menu::before {
+    content: "";
+    position: absolute;
+    top: -8px; /* Position the arrow above the menu */
+    left: 90%;
+    transform: translateX(-100%);
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 8px solid gray;  /* Arrow color (same as dropdown background) */
+}
+
+.dropdown-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-menu ul li {
+    padding: 5px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.dropdown-menu ul li:hover {
+    background-color: #f1f1f1;
+    border-radius: 4px;
+}
