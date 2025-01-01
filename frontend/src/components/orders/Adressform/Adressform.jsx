@@ -27,7 +27,7 @@ function Addressform() {
     };
 
     const handleSaveAddress = async () => {
-        console.log(address);
+        // console.log(address);
         try {
             const user = await axios.post(
                 "http://localhost:1234/routes/addAddress",

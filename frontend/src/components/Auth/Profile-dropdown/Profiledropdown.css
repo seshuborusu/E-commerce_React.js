@@ -7,12 +7,12 @@
 .dropdown-menu {
     position: absolute;
     top: 126%;  /* Position below the button */
-    right: -15px;
+    right: -12px;
     background-color: white;
     box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.2);
     z-index: 1;
     padding: 10px;
-    width: 150px;
+    min-width: 130px;
     border-radius: 4px;
     display: block;  /* Make sure the dropdown is visible */
     border: 1px solid #ccc; 
