@@ -10,29 +10,33 @@ import { ToastContainer, toast, Bounce } from 'react-toastify';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProfileDropdown from '../Profile-dropdown/Profiledropdown';
+import "./Loginmodel.css"
 
 const style = {
     position: 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
+    width: '90%', // Default for mobile devices (90% of the screen)
+    maxWidth: 400, // Maximum width for larger screens
     bgcolor: 'background.paper',
-    border: '2px solid #000',
+    border: '1px solid #000',
     boxShadow: 24,
-    p: 4,
+    p: 3,
+    '@media (min-width: 600px)': { width: '60%' }, // For medium screens (tablets)
+    '@media (min-width: 960px)': { width: '35%' }, // For large screens (desktops)
 };
 
 export default function Loginmodal() {
     const [open, setOpen] = React.useState(false);
     const [logged, setLogged] = React.useState(false)
-    const [token, setToken] = useState("")
+    const [token, setToken] = useState(false)
     const navigate = useNavigate()
 
     useEffect(() => {
         const storedtoken = localStorage.getItem("token")
         if (storedtoken) {
-            setToken(storedtoken)
+            setToken(true)
         }
     }, [open])
 
@@ -52,8 +56,8 @@ export default function Loginmodal() {
     return (
         <div>
 
-            {token ? (<div className=""><ProfileDropdown />
-            </div>) : (<Button onClick={handleOpen} variant="contained" size='medium'>Sign Up</Button>)}
+            {token ? (<div className=""><ProfileDropdown setToken={setToken} handleOpen={handleOpen}/>
+            </div>) : (<Button onClick={handleOpen} variant="contained" size='medium' className='signup-btn'>Sign Up</Button>)}
 
             <ToastContainer />
 
@@ -69,9 +73,10 @@ export default function Loginmodal() {
                         timeout: 500,
                     },
                 }}
+    
             >
                 <Fade in={open}>
-                    <Box sx={style}>
+                    <Box sx={style} width={"90%"}>
                         {
                             logged ? (<Login onswitch={switchSignup} onclose={handleClose} />) : (<Signup onswitch={SwitchLogin} />)
                         }

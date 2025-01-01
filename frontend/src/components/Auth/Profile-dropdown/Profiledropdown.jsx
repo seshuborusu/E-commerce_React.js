@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./ProfileDropdown.css"; // Import the CSS for dropdown styling
 
-function ProfileDropdown() {
+function ProfileDropdown({ setToken, handleOpen }) {
     const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
 
@@ -23,11 +23,14 @@ function ProfileDropdown() {
 
     const handleLogout = () => {
         // Clear token from localStorage and log o
+        setToken(false)
         localStorage.removeItem("logged")
-        navigate("/login")
+        navigate("/")
         localStorage.removeItem("token");
         setIsOpen(false); // Close dropdown after logout
     };
+
+  
 
     return (
         <div className="profile-dropdown">
@@ -41,10 +44,10 @@ function ProfileDropdown() {
                         <li onClick={handleProfileClick}>Profile</li>
                         <li onClick={handleOrdersClick}>Orders</li>
                         <li onClick={handleLogout}> Logout</li>
-                </ul>
+                    </ul>
                 </div>
-    )
-}
+            )
+            }
         </div >
     );
 }

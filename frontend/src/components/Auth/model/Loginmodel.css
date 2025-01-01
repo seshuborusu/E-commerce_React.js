@@ -1,0 +1,14 @@
+.signup-btn{
+    font-weight: 600!important;
+    padding: 7px 13px!important;
+    background-color: rgb(253, 73, 103)!important;
+}
+@media  (max-width:768px) {
+    .signup-btn{
+        font-weight: 600!important;
+        padding: 4px 0px!important;
+        background-color: rgb(253, 73, 103)!important;
+        font-size: 13px!important;
+        
+    } 
+}

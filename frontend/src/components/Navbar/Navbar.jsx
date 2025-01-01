@@ -54,8 +54,8 @@ const ResponsiveNavbar = () => {
                     </div>
 
                     {/* Right Section - Cart, Heart Icon, Login Button */}
-                    <div className="d-flex align-items-center p-1">
-                        <div className="login-btn-hide">
+                    <div className="d-flex align-items-center  p-1">
+                        <div className="">
                             <Loginmodal />
                         </div>
 

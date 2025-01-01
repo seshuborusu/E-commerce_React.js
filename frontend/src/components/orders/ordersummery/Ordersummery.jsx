@@ -8,7 +8,7 @@ import "./Ordersummery.css";
 
 function Ordersummery() {
     const [cart, setCart] = useState([]);
-    const [address,setAddress]=useState()
+    const [address, setAddress] = useState()
     const [price, setPrice] = useState({
         bagTotal: "",
         savings: "",
@@ -16,7 +16,7 @@ function Ordersummery() {
         shippingCharges: "",
         orderTotal: 0
     });
-const [loading,setLoading]=useState(true)
+    const [loading, setLoading] = useState(true)
     const navigate = useNavigate();
 
 
@@ -25,7 +25,7 @@ const [loading,setLoading]=useState(true)
     useEffect(() => {
         const token = localStorage.getItem("token");
         if (!token) {
-             navigate('/');
+            navigate('/');
             // console.log(token);
         } else {
             // console.log(token);
@@ -58,7 +58,7 @@ const [loading,setLoading]=useState(true)
                 })
                 .catch((err) => {
                     console.log("Error:", err);
-                }).finally(()=>{
+                }).finally(() => {
                     setLoading(false)
                 })
         }

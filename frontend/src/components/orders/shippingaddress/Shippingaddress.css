@@ -10,7 +10,7 @@
 .address-container p{
     font-size: 13px;
     text-transform: capitalize;
-    margin: 9px 0px;
+    margin: 4px 0px;
 }
 .address-container p:nth-of-type(2) span{
     font-size: 13px;

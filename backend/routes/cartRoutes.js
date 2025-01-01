@@ -1,10 +1,7 @@
 const express = require("express")
 const usermodel = require("../model/Auth")
 const jwt = require("jsonwebtoken")
-const secret_Key = "asbncjhbcnvhj";
 const jwtAuthentication=require("../middleware/token")
-
-
 const cartrouter = express.Router()
 
 
@@ -13,23 +10,13 @@ const cartrouter = express.Router()
 
 
 
-cartrouter.post("/cart", async (req, res) => {
-   const token = req.headers.authorization?.slice(7); // Extract token from Authorization header
-
-   if (!token) {
-      return res.status(401).json({ message: "No token provided" });
-   }
-
+cartrouter.post("/cart",jwtAuthentication, async (req, res) => {
    try {
-      // Verify the token
-      const decoded = jwt.verify(token, secret_Key);
-      req.user = decoded; // Attach decoded user info to the request
-      // console.log(decoded);
       const cartdata = req.body;
       // console.log(cartdata);
 
       const { quantity, _id } = cartdata; // Destructure quantity and _id from cartdata
-      const userId = req.user.userid; // Get user ID from token
+      const userId = req.id // Get user ID from token
 
       // Find the user
       const user = await usermodel.findById(userId);
@@ -111,20 +98,8 @@ cartrouter.get("/getcartdata",jwtAuthentication, async (req, res) => {
 })
 
 
-cartrouter.delete("/deletecartproduct/:id", (req, res, next) => {
-   const token = req.headers.authorization.slice(7)
-   jwt.verify(token, secret_Key, (error, decoded) => {
-      if (error) {
-         res.json("token not match")
-      } else {
-
-         req.user = decoded;
-         // console.log(decoded);
-         next()
-      }
-   })
-}, async (req, res) => {
-   const userId = req.user.userid;
+cartrouter.delete("/deletecartproduct/:id", jwtAuthentication, async (req, res) => {
+   const userId = req.id;
    const productId = req.params.id
 
    try {
@@ -173,20 +148,9 @@ cartrouter.delete("/deletecartproduct/:id", (req, res, next) => {
 
 
 
-cartrouter.post("/updatequantity/:id", (req, res, next) => {
-   const token = req.headers.authorization.slice(7)
-   jwt.verify(token, secret_Key, (error, decode) => {
-      if (error) {
-         res.json("Token not match")
-      } else {
-         req.user = decode
-         // console.log(decode);
-         next()
-      }
-   })
-},
+cartrouter.post("/updatequantity/:id", jwtAuthentication,
    async (req, res) => {
-      const userId = req.user.userid;
+      const userId = req.id;
       const productId = req.params.id; // The product ID to be updated
       const { quantity } = req.body; // The new quantity to update to
       // console.log(quantity);
@@ -253,7 +217,7 @@ cartrouter.post("/updatequantity/:id", (req, res, next) => {
 // POST endpoint to merge guest cart with user cart
 cartrouter.post("/cart/merge", (req, res, next) => {
    const token = req.headers.authorization.slice(7)
-   jwt.verify(token, secret_Key, (error, decode) => {
+   jwt.verify(token, (error, decode) => {
       if (error) {
          res.json("Token not match")
       } else {

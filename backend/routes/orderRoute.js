@@ -1,25 +1,13 @@
 const express = require("express");
 const orderrouter = express.Router();
-const jwt = require("jsonwebtoken");
 const usermodel = require("../model/Auth")
-const secret_Key = "asbncjhbcnvhj";
 const orderModel = require("../model/order")
+const jwtAuthentication=require("../middleware/token")
 
-orderrouter.post("/placeorder", async (req, res) => {
-    const token = req.headers.authorization?.slice(7); // Extract token from Authorization header
-
-    if (!token) {
-        return res.status(401).json({ message: "No token provided" });
-    }
-
+orderrouter.post("/placeorder",jwtAuthentication, async (req, res) => {
     try {
-        // Verify the token
-        const decoded = jwt.verify(token, secret_Key);
-        req.user = decoded; // Attach decoded user info to the request
-        // console.log(req.body);
         const { cart, totalAmount, ShippingAddress } = req.body;
-        const userId = req.user.userid;
-
+        const userId = req.id;
         // Find the user
         const user = await usermodel.findById(userId);
         if (!user) {
@@ -53,20 +41,9 @@ orderrouter.post("/placeorder", async (req, res) => {
 });
 
 
-orderrouter.get("/ordersummery", async (req, res) => {
-    const token = req.headers.authorization?.slice(7); // Extract token from Authorization header
-
-    if (!token) {
-        return res.status(401).json({ message: "No token provided" });
-    }
-
+orderrouter.get("/ordersummery",jwtAuthentication, async (req, res) => {
     try {
-        // Verify the token
-        const decoded = jwt.verify(token, secret_Key);
-        req.user = decoded; // Attach decoded user info to the request
-        // console.log(req.body);
-        const userId = req.user.userid;
-
+        const userId = req.id;
         // Find the user
         const user = await usermodel.findById(userId);
         if (!user) {
