@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { BiRupee } from "react-icons/bi";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation } from "react-router-dom";
 import Quantity from "../../cart/Quantity/Quantity";
 import Shippingaddress from "../shippingaddress/Shippingaddress";
 import "./Ordersummery.css";
@@ -18,6 +18,7 @@ function Ordersummery() {
     });
     const [loading, setLoading] = useState(true)
     const navigate = useNavigate();
+    const location = useLocation(); // Retrieve the passed state from navigation
 
 
 
@@ -38,8 +39,8 @@ function Ordersummery() {
                 })
                 .then((res) => {
                     setCart(res.data.result.cart || []);
-                    // console.log(res.data);
-                    setAddress(res.data.result.addresses[0])
+                    setAddress(location.state?.selectedAddress);
+                   //console.log(location.state.selectedAddress,"hiii")
 
                 })
                 .catch((err) => {
@@ -53,7 +54,7 @@ function Ordersummery() {
             })
                 .then((res) => {
                     setPrice(res.data.priceDetails);
-                    console.log(res.data);
+                    // console.log(res.data);
 
                 })
                 .catch((err) => {
@@ -62,7 +63,7 @@ function Ordersummery() {
                     setLoading(false)
                 })
         }
-    }, [navigate]);
+    }, [navigate,location]);
 
     const handlePlaceOrderClick = async () => {
         if (!address) {

@@ -9,7 +9,7 @@ const addressSchema = new mongoose.Schema({
     state: { type: String,  },
     address:{type:String},
     street: { type: String,  },
-    isDefault: { type: Boolean, default: false },  // Optional field to mark the default address
+    isDefault: { type: Boolean, default: true },  // Optional field to mark the default address
 
 });
 

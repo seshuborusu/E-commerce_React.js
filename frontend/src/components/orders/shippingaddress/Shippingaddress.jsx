@@ -1,26 +1,45 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
 import "./Shippingaddress.css"
+import { useNavigate, useLocation } from "react-router-dom"
+import BottomToTopModal from "../Changeaddress/Changeaddress"
+
+
 function Shippingaddress() {
     const logged = localStorage.getItem("logged")
     const storedtoken = localStorage.getItem("token")
-    let [address, setAddress] = useState({
-        name: "", address: "", city: "", zip: ""
-    })
+    const location = useLocation();
+    const [address, setAddress] = useState(location.state?.selectedAddress || {
+        name: "",
+        address: "",
+        city: "",
+        state: "",
+        zip: "",
+        phone: ""
+    }); 
 
+    const navigate = useNavigate()
     useEffect(() => {
-        axios.get("http://localhost:1234/routes/getAddresses", {
-            params: { mobile: logged },
-            headers: {
-                Authorization: `Bearer ${storedtoken}`,
-            },
-        }).then((res) => {
-            setAddress(res.data.addresses[0])
-            // console.log(res.data.addresses[0]);
-        }).catch((err) => {
-            alert("err")
-        })
-    }, [])
+        // If address is not passed via location state, fetch from backend
+        if (!location.state?.selectedAddress) {
+            axios.get("http://localhost:1234/routes/getAddresses", {
+                params: { mobile: logged },
+                headers: {
+                    Authorization: `Bearer ${storedtoken}`,
+                },
+            }).then((res) => {
+                setAddress(res.data.addresses[0]); // Set the first address as default
+            }).catch((err) => {
+                alert("Error fetching address");
+            });
+        }
+    }, [logged, storedtoken, location.state]);
+
+
+    const handleAddresses = () => {
+        navigate("/changeaddress")
+    }
+    console.log(address);
     return (
         <div className="">
             <p className="shipping-title border-bottom p-1">Shipping Address</p>
@@ -29,8 +48,8 @@ function Shippingaddress() {
                 <p>{address.address},{address.city},{address.state},{address.zip}</p>
                 <p>Mobile: <span>{address.phone}</span></p>
             </div>
-            <div className="text-end me-md-5">
-                <button className="address-btn">Edit Address</button><button className="address-btn">Add new address</button>
+            <div className=" me-md-5  d-flex justify-content-end">
+                 {/* <button className="address-btn" onClick={handleAddresses}>Edit Address</button>*/}<BottomToTopModal /><button className="address-btn" >Add new address</button> 
             </div>
         </div>
     )

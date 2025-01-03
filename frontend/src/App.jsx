@@ -12,6 +12,8 @@ import NavScrollExample from "../src/components/Navbar/Navbar"
 import Addressform from "./components/orders/Adressform/Adressform";
 import { Placeholder } from "react-bootstrap";
 import Ordersummery from "./components/orders/ordersummery/Ordersummery";
+import EditAddress from "./components/orders/Editaddress/Editaddress";
+import Changeaddress from "./components/orders/Changeaddress/Changeaddress";
 function App() {  
     
     return (
@@ -33,6 +35,8 @@ function App() {
                 <Route path="/address" element={<Addressform/>}/>
                 <Route path="/placeorder" element={<Placeholder/>}/>
                 <Route path="/ordersummery" element={<Ordersummery/>}/>
+                <Route path="/editaddress" element={<EditAddress/>}/>
+                <Route path="/changeaddress" element={<Changeaddress/>}/>
 
             
 
