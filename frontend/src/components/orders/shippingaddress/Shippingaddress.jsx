@@ -49,7 +49,7 @@ function Shippingaddress() {
                 <p>Mobile: <span>{address.phone}</span></p>
             </div>
             <div className=" me-md-5  d-flex justify-content-end">
-                 {/* <button className="address-btn" onClick={handleAddresses}>Edit Address</button>*/}<BottomToTopModal /><button className="address-btn" >Add new address</button> 
+                 {/* <button className="address-btn" onClick={handleAddresses}>Edit Address</button>*/}<BottomToTopModal /><button className="address-btn" onClick={()=>{navigate("/address")}}>Add new address</button> 
             </div>
         </div>
     )

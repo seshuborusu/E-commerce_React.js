@@ -259,6 +259,22 @@ function ProductDetails() {
         }
     }
     // console.log(product);
+
+
+    const addToWishlist = () => {
+        axios.post(`http://localhost:1234/routes/add-to-wishlist`, product, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`   // Get userId from the authenticated session
+            }
+        })
+            .then(response => {
+                console.log('Product added to wishlist:', response.data);
+            })
+            .catch(err => {
+                console.error('Error adding product to wishlist:', err);
+            });
+    };
+
     return (
         <div>
             <div className="container my-2" >
@@ -325,7 +341,7 @@ function ProductDetails() {
                             ) : (
                                 <button className="  w-50 cart-button p-2 me-3" onClick={goToCart}>Go to Cart</button>
                             )}
-                            <button className="wishlist-button  w-50 "><CiHeart className="fs-4 mb-1" /> Wishlist</button>
+                            <button className="wishlist-button  w-50 " onClick={addToWishlist}><CiHeart className="fs-4 mb-1" /> Wishlist</button>
                         </div>
                     </div>
                 </div>

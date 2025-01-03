@@ -270,6 +270,9 @@ cartrouter.post("/cart/merge", (req, res, next) => {
 
 
 
+
+
+
 const mergeGuestCart = () => {
    const guestCart = JSON.parse(localStorage.getItem("cart")) || [];
    const token = localStorage.getItem("token");

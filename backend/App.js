@@ -6,6 +6,7 @@ const cartrouter = require("../backend/routes/cartRoutes")
 const userroute = require("./routes/authRoute")
 const orderrouter = require("./routes/orderRoute")
 const addressRoute = require("./routes/addressRoute")
+const wishlistRoute=require("../backend/routes/wishlistRoute")
 
 
 
@@ -44,6 +45,8 @@ app.use("/routes", orderrouter)
 app.use("/routes", addressRoute)
 
 app.use("/routes", addressRoute)
+
+app.use("/routes",wishlistRoute)
 
 app.post("/addproduct", async (req, res) => {
     const data = req.body

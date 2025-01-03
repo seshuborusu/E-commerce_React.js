@@ -94,25 +94,26 @@ addressRoute.post("/updateAddress", async (req, res) => {
 
 
 // In your Express backend
-addressRoute.delete('/removeaddress', async (req, res) => {
-    const { mobile, addressId } = req.body;
-
-    if (!mobile || !addressId) {
-        return res.status(400).json({ message: "Mobile and Address ID are required." });
-    }
+addressRoute.delete('/removeaddress/:id', async (req, res) => {
+    const { mobile } = req.query; // Get mobile from query parameters
+    const addressId = req.params.id; // Get address id from URL params
 
     try {
-        // Find and remove the address by its ID
-        const address = await userModel.findOneAndDelete({ _id: addressId, mobile: mobile });
+        // Find the user by mobile and remove the address with the given addressId
+        const user = await userModel.findOneAndUpdate(
+            { mobile }, // Find user by mobile
+            { $pull: { addresses: { _id: addressId } } }, // Use $pull to remove the address with the given _id
+            { new: true } // Return the updated user document
+        );
 
-        if (!address) {
-            return res.status(404).json({ message: "Address not found." });
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
         }
 
-        res.status(200).json({ message: "Address removed successfully." });
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ message: "Server error" });
+        res.status(200).json({ message: "Address deleted successfully" });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Error deleting address" });
     }
 });
 

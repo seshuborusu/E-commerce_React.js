@@ -18,7 +18,6 @@ export default function BottomToTopModal() {
     const [open, setOpen] = useState(false);
     const [address, setAddress] = useState([]);
     const [selectedAddress, setSelectedAddress] = useState(null);
-    const [editModalOpen, setEditModalOpen] = useState(false);
 
     const logged = localStorage.getItem("logged");
     const storedtoken = localStorage.getItem("token");
@@ -34,7 +33,7 @@ export default function BottomToTopModal() {
         })
             .then((res) => {
                 setAddress(res.data.addresses || []);
-
+                //console.log(res.data);
                 // Set the first address as the default selected address if available
                 if (res.data.addresses && res.data.addresses.length > 0) {
                     setSelectedAddress(res.data.addresses[0]);
@@ -69,18 +68,27 @@ export default function BottomToTopModal() {
     };
 
     const handleEditAddress = () => {
-        setEditModalOpen(true);  // Open the Edit Address Modal
         navigate("/editaddress", { state: { selectedAddress } })
         handleClose(); // Close the current modal (address selection)
     };
 
+    //console.log(location.state);
+    const removeAddress = (id) => {
+        console.log(id);
+        axios.delete(`http://localhost:1234/routes/removeaddress/${id}`, {
+            params: { mobile: logged },
+        }).then((res) => {
+            console.log(res.data);
+            setAddress((prevAddresses) => prevAddresses.filter((address) => address._id !== id));
 
+        }).catch((err) => { alert("err") })
+    }
 
     return (
         <div>
-            <Button variant="outlined" onClick={handleOpen}>
-                Open Bottom-to-Top Modal
-            </Button>
+            <button className='address-btn' onClick={handleOpen}>
+                Edit/Change
+            </button>
 
             {/* Address Selection Modal */}
             <Dialog
@@ -139,14 +147,14 @@ export default function BottomToTopModal() {
                                         >
                                             Edit
                                         </button>
-                                        <button className="address-btn">Remove</button>
+                                        <button className="address-btn" onClick={() => { removeAddress(address._id) }}>Remove</button>
                                     </div>
                                 )}
                             </div>
                         ))}
-                        <div className="text-end mt-3">
+                        <div className="text-center mt-3 border p-1">
                             <button
-                                className="address-btn"
+                                className="address-btn "
                                 onClick={handleSelectAddress}
                             >
                                 Ship to this address

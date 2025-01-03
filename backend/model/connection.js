@@ -9,9 +9,6 @@ const productsschema=new mongoose.Schema({
     category:String,
     rating:{rate:Number,count:Number},
    thumbnails:[{name:String,url:String}]
-
-
-
 })
 
 const productmodel=mongoose.model("product",productsschema)

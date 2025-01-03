@@ -31,7 +31,7 @@ function EditAddress() {
             });
 
             if (response.data.success) {
-                alert("Address updated successfully");
+                // alert("Address updated successfully");
                 navigate("/ordersummery");  // Redirect to the shipping page
             } else {
                 alert("Failed to update address");
@@ -91,14 +91,8 @@ function EditAddress() {
 
                 </div>
                 <div className=' mt-2 p-3 row d-flex justify-content-center'>
-                    <button onClick={saveAddress} className='form-proceedbtn col-12 col-md-4 col-lg-4 text-center'>Save Address</button>
+                    <button onClick={saveAddress} className='form-proceedbtn col-12 col-md-4 col-lg-4 text-center'>{loading ? "Updating..." : "Update Address"}</button>
                 </div>
-            </div>
-
-            <div className="text-end">
-                <button type="submit" className="address-btn">
-                    {loading ? "Updating..." : "Update Address"}
-                </button>
             </div>
 
         </div>
